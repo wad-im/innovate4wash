@@ -19,6 +19,16 @@ const Layout = ({children})=>{
 export default Layout
 
 const LayoutContainer = styled.div`
-    
+    display: grid;
+    grid-template-columns: 1fr repeat(12, minmax(auto, 4.5rem)) 1fr;
+    grid-column-gap: 2rem;
+    grid-template-rows: auto 1fr auto;
+    min-height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    .content-container {
+        grid-column: 2 / span 12;
+    }
 `
 

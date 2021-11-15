@@ -5,7 +5,7 @@ import Layout from "../components/Layout"
 const IndexPage = () => {
   return (
     <Layout>
-      <h1>Innovate4WASH</h1>
+      <h1>Main Content</h1>
     </Layout>
   )
 }

@@ -20,7 +20,7 @@ export default Layout
 
 const LayoutContainer = styled.div`
     display: grid;
-    grid-template-columns: 1fr repeat(12, minmax(auto, 4.5rem)) 1fr;
+    grid-template-columns: 1fr repeat(12, minmax(auto, 4rem)) 1fr;
     grid-column-gap: 2rem;
     grid-template-rows: auto 1fr auto;
     min-height: 100vh;

@@ -1,16 +1,16 @@
 import React from 'react';
 
-const BlobImage = () => {
+const BlobImage = ({classname}) => {
     return ( 
-        <svg viewBox="0 0 250 250" xmlns="http://www.w3.org/2000/svg">
+        <svg viewBox="0 0 428 497" xmlns="http://www.w3.org/2000/svg" width='100%' height='100%' className={classname}>
             <defs>
                 <clipPath id="user-space" clipPathUnits="userSpaceOnUse">
-                    <path fill="#8BEDE8" d="M49.5,-65.4C58.2,-51.8,55.1,-30.5,54.2,-12.9C53.4,4.7,54.7,18.5,49.1,28.6C43.6,38.6,31.1,44.8,17.6,50.9C4.1,57,-10.5,62.8,-22.5,59.5C-34.5,56.1,-44.1,43.5,-53.7,29.7C-63.3,15.8,-73,0.6,-73.4,-15.7C-73.8,-32,-65,-49.4,-51.2,-62.2C-37.4,-75,-18.7,-83.1,0.9,-84.1C20.4,-85.2,40.9,-79.1,49.5,-65.4Z" transform="translate(100 100)"/>
-                </clipPath>
+                <path d="M342.951 85.1715C386.308 140.411 434.777 223.27 426.257 284.947C417.8 346.52 352.417 386.911 292.209 428.029C232.064 469.147 177.095 510.888 120.295 491.783C63.4315 472.574 4.73816 392.518 0.951497 308.102C-2.77206 223.789 48.4111 135.219 94.5453 78.9415C140.68 22.6638 181.765 -1.32168 221.525 0.547318C261.222 2.41632 299.53 29.9321 342.951 85.1715Z" fill="#049D9D"/>                </clipPath>
             </defs>
-            <image width="100%" height="100%" preserveAspectRatio="xMinYMin " href="https://source.unsplash.com/random" clip-path="url(#user-space)"/>
+            <image width="100%" height="100%" preserveAspectRatio="xMidYMid slice" href="https://source.unsplash.com/random" clip-path="url(#user-space)"/>
 	    </svg>
      );
 }
  
 export default BlobImage;
+

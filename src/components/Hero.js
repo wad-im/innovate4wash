@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Button from './Button';
 import {StaticImage} from 'gatsby-plugin-image'
+import BlobImage from './BlobImage';
 
 const HeroSection = () => {
     return ( 
@@ -18,14 +19,15 @@ const HeroSection = () => {
                 </p>
                 <div className="button-group">
                     <Button to='/registration' classname='reg-button'>
-                        Secure your seat
+                        Save your spot
                     </Button>
                     <a className='sponsor-button'>
                         I am interested to become a sponsor
                     </a>
                 </div>
             </div>
-            <StaticImage src='../images/heroImage.jpg' alt='hero image' className='hero-image'/>
+            {/* <StaticImage src='../images/heroImage.jpg' alt='hero image' className='hero-image'/> */}
+            <BlobImage className='hero-image'/>
         </HeroContainer>
      );
 }

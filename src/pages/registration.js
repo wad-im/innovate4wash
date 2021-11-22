@@ -6,10 +6,17 @@ import SignUp from '../components/SignUpForm';
 const RegistrationPage = () => {
     return ( 
         <Layout>
-            <h1>Register for Innovate4WASH</h1>
-            <SignUp/>
+            <RegistrationContainer>
+                <h1>Register for Innovate4WASH</h1>
+                <SignUp/>
+            </RegistrationContainer>
         </Layout>
      );
 }
  
 export default RegistrationPage;
+
+const RegistrationContainer = styled.div`
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+`

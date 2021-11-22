@@ -6,13 +6,16 @@ import axios from 'axios';
 
 const SignUp = () => {
 
+    const [submitted, setSubmitted] = useState(false)
+    const [completeRegistration, setCompleteRegistration] = useState(false)
 
     const submitToApi = async (values)=> {
         try {
             const response = await axios.post("/api/airtable", {values})
-            console.log(response)
-
-            
+            if (response.status === 200) {
+                setSubmitted(false)
+                setCompleteRegistration(true)
+            }            
         } catch (error) {
             console.log(error.message)
         }
@@ -36,52 +39,143 @@ const SignUp = () => {
             organization: Yup.string().required('Required'),
             email: Yup.string().email("Invalid email address").required('Required')
         }),
-        onSubmit: (values) => {
+        onSubmit: (values, { resetForm }) => {
             submitToApi(values)
+            setTimeout(() => {
+                setSubmitted(true)
+                resetForm()
+              }, 400);
+            
         }
     })
     // console.log(formik.errors)
-    return ( 
-        <form noValidate onSubmit={formik.handleSubmit}>
-            <div className="input-container">
-                <input
-                    type="text"
-                    id='fullName'
-                    name='fullName'
-                    placeholder='Full Name'
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    value={formik.values.fullName}
-                 />
-                 {formik.touched.fullName &&  formik.errors.fullName ? <p>{formik.errors.fullName}</p> : null}
-            </div>
-            <div className="input-container">
-                <input
-                    type="text"
-                    id='organization'
-                    name='organization'
-                    placeholder='Organization'
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    value={formik.values.organization}
-                 />
-                 { formik.touched.organization && formik.errors.organization ? <p>{formik.errors.organization}</p> : null}
-            </div>
-            <div className="input-container">
-                <input
-                    type="email"
-                    id='email'
-                    name='email'
-                    placeholder='Email'
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    value={formik.values.email}
-                 />
-                 { formik.touched.email && formik.errors.email ? <p>{formik.errors.email}</p> : null}
-            </div>
-            <button type='submit' >Submit</button>
-        </form>
+    return (
+        
+        <FormContainer>
+            {
+                completeRegistration ? <p className="confirmation-message"> 🎉 Thank you for registration</p> : 
+                submitted ?  <p className='submitting-message'>Checking you in...</p> :
+                    <form noValidate onSubmit={formik.handleSubmit}>
+                        <div className="input-container">
+                            <label htmlFor="fullName">Full Name</label>
+                            <input
+                                type="text"
+                                id='fullName'
+                                name='fullName'
+                                placeholder='Jane Doe'
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                value={formik.values.fullName}
+                            />
+                            {formik.touched.fullName &&  formik.errors.fullName ? <p className="error-message">{formik.errors.fullName}</p> : null}
+                        </div>
+                        <div className="input-container">
+                            <label htmlFor="organization">Organization</label>
+                            <input
+                                type="text"
+                                id='organization'
+                                name='organization'
+                                placeholder='Example Ltd.'
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                value={formik.values.organization}
+                            />
+                            { formik.touched.organization && formik.errors.organization ? <p className="error-message">{formik.errors.organization}</p> : null}
+                        </div>
+                        <div className="input-container">
+                            <label htmlFor="email">Email</label>
+                            <input
+                                type="email"
+                                id='email'
+                                name='email'
+                                placeholder='example@example.com'
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                value={formik.values.email}
+                            />
+                            { formik.touched.email && formik.errors.email ? <p className="error-message">{formik.errors.email}</p> : null}
+                        </div>
+                        <button type='submit' disabled={formik.isSubmitting} className='submit-button' >Register me!</button>
+                    </form> 
+            }
+        </FormContainer>
+
+
+        
      );
 }
  
 export default SignUp;
+
+const FormContainer = styled.div`
+    padding: 2rem;
+    background-color: #137a757d;
+    border-radius: 1rem;
+    form {
+        display: grid;
+        grid-row-gap: 1.5rem;
+    }
+    .input-container {
+        display: flex;
+        flex-direction: column;
+    }
+    label {
+        font-weight: 700;
+        margin-bottom: 0.25rem;
+    }
+    input {
+        background: none;
+        background-color: none;
+        border: none;
+        border-bottom: 1px solid #20C9C1;
+        font-size: 1rem;
+        color: #fff;
+        padding: .625rem .625rem .625rem .3125rem;
+        &:focus {
+            outline: none;
+            border: 1px solid #20C9C1;
+            border-radius: 0.5rem;
+        }
+        &::placeholder {
+            color: #1AA19B;
+            font-weight: 400;
+            font-size: 1rem;
+        }
+    }
+    .error-message {
+        font-size: 0.75rem;
+        align-self: flex-end;
+    }
+    .submit-button {
+        all: unset;
+        place-self: end;
+        cursor: pointer;
+        color: #fff;
+        display: inline-flex;
+        appearance: none;
+        -webkit-box-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        justify-content: center;
+        user-select: none;
+        white-space: nowrap;
+        vertical-align: middle;
+        outline: transparent solid 2px;
+        outline-offset: 2px;
+        width: fit-content;
+        min-height: 2rem;
+        border-radius: 0.375rem;
+        line-height: 1.2;
+        padding-inline-start: 0.75rem;
+        padding-inline-end: 0.75rem;
+        background-color: #1AA19B;
+        transition: transform 0.3s ease, border 0.3s ease;
+        :active {
+            transform: scale(0.98);
+        }
+        :focus {
+            outline: 1px solid #fff;
+            outline-offset: -4px;
+        }
+    }
+`

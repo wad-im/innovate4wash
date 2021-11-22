@@ -2,8 +2,19 @@ import React from 'react';
 import styled from 'styled-components';
 import { useFormik } from 'formik';
 import * as Yup from 'yup'
+import axios from 'axios';
 
 const SignUp = () => {
+
+    const submitToApi = async (values)=> {
+        try {
+            const response = await axios.post("/api/airtable", {values})
+            console.log(response)
+            
+        } catch (error) {
+            console.log(error.message)
+        }
+    }
 
     const formik = useFormik({
         initialValues: {
@@ -24,12 +35,12 @@ const SignUp = () => {
             email: Yup.string().email("Invalid email address").required('Required')
         }),
         onSubmit: (values) => {
-            console.log(values)
+            submitToApi(values)
         }
     })
-    console.log(formik.errors)
+    // console.log(formik.errors)
     return ( 
-        <form onSubmit={formik.handleSubmit}>
+        <form noValidate onSubmit={formik.handleSubmit}>
             <div className="input-container">
                 <input
                     type="text"

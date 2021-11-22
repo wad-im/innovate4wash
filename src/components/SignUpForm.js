@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 import { useFormik } from 'formik';
 import * as Yup from 'yup'
@@ -6,10 +6,12 @@ import axios from 'axios';
 
 const SignUp = () => {
 
+
     const submitToApi = async (values)=> {
         try {
             const response = await axios.post("/api/airtable", {values})
             console.log(response)
+
             
         } catch (error) {
             console.log(error.message)

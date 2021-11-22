@@ -25,9 +25,10 @@ export default async function handler(req, res) {
                 [
                   {
                     fields: {
-                      Name: values.fullName,
-                      Organization: values.organization,
-                      Email: values.email,
+                      "Name": values.fullName,
+                      "Organization": values.organization,
+                      "Email": values.email,
+                      "Complete Registration": false
                     },
                   },
                 ],
@@ -38,12 +39,27 @@ export default async function handler(req, res) {
                       error: err.message,
                     })
                   } else {
-                    res.status(200).json({ message: `Thank you for your registration` })
+                    const recordId = records[0].getId()
+                    database('Online Registrations').update([
+                        {
+                        "id": recordId,
+                        "fields": {
+                            "Complete Registration": true
+                        }
+                        }
+                    ], (err, records) => {
+                        if (err) {
+                            res.json({
+                                message: "Error adding record to Airtable.",
+                                error: err.message,
+                              })
+                        } else {
+                            res.status(200).json({ message: `Thank you for your registration` })
+                        }
+                    });
                   }
                 }
-                
               )
-
         } catch (error) {
             res.status(500).json({message: error.message})
         }

@@ -1,15 +1,25 @@
-import React, {useState} from 'react';
+import React, {useState, useLayoutEffect} from 'react';
 import styled from 'styled-components';
+import { navigate } from "gatsby";
 import { useFormik } from 'formik';
 import * as Yup from 'yup'
 import axios from 'axios';
+import queryString from "query-string";
 
-const SignUp = () => {
+const SignUp = ({location}) => {
 
     const [submitted, setSubmitted] = useState(false)
     const [completeRegistration, setCompleteRegistration] = useState(false)
+    const { sessionId } = queryString.parse(location.search);
 
-    const submitToApi = async (values)=> {
+    useLayoutEffect(() => {
+        if (!sessionId) {
+          navigate("/registration");
+        }
+      }, [sessionId]);
+
+
+    const submitToDatabaseApi = async (values)=> {
         try {
             const response = await axios.post("/api/airtable", {values})
             if (response.status === 200) {
@@ -19,6 +29,39 @@ const SignUp = () => {
         } catch (error) {
             console.log(error.message)
         }
+    }
+
+
+    const submitToPaymentApi = async (values, location) => {
+        try {
+            const response = await axios.post("/api/payment", {
+                email: values.email,
+                cancelUrl: `${location.origin}/`,
+                successUrl: `${location.origin}/registration/?sessionId={CHECKOUT_SESSION_ID}`,
+            })
+            console.log(response)
+            window.location = response.data.url;
+        } catch (error) {
+            console.log("from payment:" + error.message)
+        }
+    }
+
+    const verifyPayment = async (sessionId) => {
+        try {
+            const response = await axios.get("/api/payment", {
+                params: {
+                    sessionId: sessionId 
+                  }
+            })
+            console.log(response)
+
+        } catch (error) {
+            console.log("from payment verification" + error.message)
+        }
+    }
+
+    if (sessionId) {
+        verifyPayment(sessionId)
     }
 
     const formik = useFormik({
@@ -40,7 +83,8 @@ const SignUp = () => {
             email: Yup.string().email("Invalid email address").required('Required')
         }),
         onSubmit: (values, { resetForm }) => {
-            submitToApi(values)
+            submitToDatabaseApi(values)
+            submitToPaymentApi(values, location)
             setTimeout(() => {
                 setSubmitted(true)
                 resetForm()
@@ -95,7 +139,7 @@ const SignUp = () => {
                             />
                             { formik.touched.email && formik.errors.email ? <p className="error-message">{formik.errors.email}</p> : null}
                         </div>
-                        <button type='submit' disabled={formik.isSubmitting} className='submit-button' >Register me!</button>
+                        <button type='submit' disabled={formik.isSubmitting} className='submit-button' >Proceed to payment</button>
                     </form> 
             }
         </FormContainer>

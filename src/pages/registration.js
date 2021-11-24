@@ -3,12 +3,12 @@ import styled from 'styled-components'
 import Layout from "../components/Layout"
 import SignUp from '../components/SignUpForm';
 
-const RegistrationPage = () => {
+const RegistrationPage = ({location}) => {
     return ( 
         <Layout>
             <RegistrationContainer>
                 <h1>Register for Innovate4WASH</h1>
-                <SignUp/>
+                <SignUp location={location}/>
             </RegistrationContainer>
         </Layout>
      );

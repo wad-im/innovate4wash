@@ -1,4 +1,4 @@
-import React, {useState, useLayoutEffect} from 'react';
+import React, {useState, useLayoutEffect, useEffect} from 'react';
 import styled from 'styled-components';
 import { navigate } from "gatsby";
 import { useFormik } from 'formik';
@@ -18,50 +18,63 @@ const SignUp = ({location}) => {
         }
       }, [sessionId]);
 
-
-    const submitToDatabaseApi = async (values)=> {
+    const checkout = async (values, location)=> {
         try {
             const response = await axios.post("/api/airtable", {values})
-            if (response.status === 200) {
-                setSubmitted(false)
-                setCompleteRegistration(true)
-            }            
+            const recordId = response.data.recordId
+            // build a check here
+            submitToPaymentApi(values, location, recordId) 
         } catch (error) {
             console.log(error.message)
         }
     }
 
-
-    const submitToPaymentApi = async (values, location) => {
+    const submitToPaymentApi = async (values, location, recordId) => {
         try {
             const response = await axios.post("/api/payment", {
                 email: values.email,
                 cancelUrl: `${location.origin}/`,
                 successUrl: `${location.origin}/registration/?sessionId={CHECKOUT_SESSION_ID}`,
+                recordId: recordId
             })
-            console.log(response)
             window.location = response.data.url;
+            setSubmitted(false)
         } catch (error) {
             console.log("from payment:" + error.message)
         }
     }
 
-    const verifyPayment = async (sessionId) => {
-        try {
-            const response = await axios.get("/api/payment", {
-                params: {
-                    sessionId: sessionId 
-                  }
-            })
-            console.log(response)
-
-        } catch (error) {
-            console.log("from payment verification" + error.message)
+    useEffect(()=>{
+        const verifyPayment = async (sessionId) => {
+            try {
+                const response = await axios.get("/api/payment", {
+                    params: {
+                        sessionId: sessionId 
+                      }
+                })
+                const {recordId} = response.data
+                recordPaymentInDb(recordId)
+                setCompleteRegistration(true)
+                
+            } catch (error) {
+                console.log("from payment verification" + error.message)
+            }
         }
-    }
+    
+        if (sessionId) {
+            verifyPayment(sessionId)
+        }
+    },[sessionId])
 
-    if (sessionId) {
-        verifyPayment(sessionId)
+
+    const recordPaymentInDb = async (recordId)=>{
+        try {
+            await axios.post("/api/updateRecord", {
+                recordId: recordId
+            })
+        } catch (error) {
+            console.log(error.message)
+        }
     }
 
     const formik = useFormik({
@@ -83,8 +96,8 @@ const SignUp = ({location}) => {
             email: Yup.string().email("Invalid email address").required('Required')
         }),
         onSubmit: (values, { resetForm }) => {
-            submitToDatabaseApi(values)
-            submitToPaymentApi(values, location)
+            // submitToDatabaseApi(values)
+            checkout(values, location)
             setTimeout(() => {
                 setSubmitted(true)
                 resetForm()
@@ -97,8 +110,8 @@ const SignUp = ({location}) => {
         
         <FormContainer>
             {
-                completeRegistration ? <p className="confirmation-message"> 🎉 Thank you for registration</p> : 
-                submitted ?  <p className='submitting-message'>Checking you in...</p> :
+                completeRegistration ? <p className="confirmation-message"> 🎉 Thank you for your registration</p> : 
+                submitted ?  <p className='submitting-message'>Forwarding you to payment</p> :
                     <form noValidate onSubmit={formik.handleSubmit}>
                         <div className="input-container">
                             <label htmlFor="fullName">Full Name</label>

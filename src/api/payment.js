@@ -29,7 +29,7 @@ export default async function handler(req, res) {
 }
 
 const createStripeSession = async (req, res) => {
-    const {successUrl, cancelUrl, email} = req.body
+    const {successUrl, cancelUrl, email, recordId} = req.body
     
     try {
         const session = await stripe.checkout.sessions.create({
@@ -43,7 +43,10 @@ const createStripeSession = async (req, res) => {
               },
             ],
             mode: "payment",
-            customer_email: email
+            customer_email: email,
+            metadata: {
+              dbRecordId: recordId,
+            },
           });
           res.json({ url: session.url })
     
@@ -58,12 +61,15 @@ const fetchStripeSession = async (req, res) => {
 
   try {
     const sessionFromStripe = await stripe.checkout.sessions.retrieve(sessionId);
+    const {dbRecordId} = sessionFromStripe.metadata
+
     
     if (sessionFromStripe.payment_status !== "paid") {
       console.log("Payment required")
     } else {
       res.status(200).json({
         message: "you successfully registered",
+        recordId: dbRecordId,
       });
     }
   } catch (error) {

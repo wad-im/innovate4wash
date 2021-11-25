@@ -38,7 +38,7 @@ const SignUp = ({location}) => {
                 recordId: recordId
             })
             window.location = response.data.url;
-            setSubmitted(false)
+            // setSubmitted(false)
         } catch (error) {
             console.log("from payment:" + error.message)
         }
@@ -63,6 +63,7 @@ const SignUp = ({location}) => {
     
         if (sessionId) {
             verifyPayment(sessionId)
+            setSubmitted(true)
         }
     },[sessionId])
 
@@ -95,23 +96,22 @@ const SignUp = ({location}) => {
             organization: Yup.string().required('Required'),
             email: Yup.string().email("Invalid email address").required('Required')
         }),
+        isInitialValid: false,
         onSubmit: (values, { resetForm }) => {
-            // submitToDatabaseApi(values)
             checkout(values, location)
+            setSubmitted(true)
             setTimeout(() => {
-                setSubmitted(true)
                 resetForm()
               }, 400);
             
         }
     })
-    // console.log(formik.errors)
     return (
         
         <FormContainer>
             {
                 completeRegistration ? <p className="confirmation-message"> 🎉 Thank you for your registration</p> : 
-                submitted ?  <p className='submitting-message'>Forwarding you to payment</p> :
+                submitted ?  <p className='submitting-message'>Forwarding you to payment- This may take a moment.</p> :
                     <form noValidate onSubmit={formik.handleSubmit}>
                         <div className="input-container">
                             <label htmlFor="fullName">Full Name</label>
@@ -152,7 +152,7 @@ const SignUp = ({location}) => {
                             />
                             { formik.touched.email && formik.errors.email ? <p className="error-message">{formik.errors.email}</p> : null}
                         </div>
-                        <button type='submit' disabled={formik.isSubmitting} className='submit-button' >Proceed to payment</button>
+                        <button type='submit' disabled={formik.isSubmitting || !formik.isValid} className='submit-button' >Proceed to payment</button>
                     </form> 
             }
         </FormContainer>
@@ -233,6 +233,9 @@ const FormContainer = styled.div`
         :focus {
             outline: 1px solid #fff;
             outline-offset: -4px;
+        }
+        :disabled {
+            cursor: not-allowed;
         }
     }
 `

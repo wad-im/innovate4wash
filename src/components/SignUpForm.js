@@ -9,6 +9,7 @@ import queryString from "query-string";
 const SignUp = ({location}) => {
 
     const [submitted, setSubmitted] = useState(false)
+    const [errorMessage, setErrorMessage] = useState(null)
     const [completeRegistration, setCompleteRegistration] = useState(false)
     const { sessionId } = queryString.parse(location.search);
 
@@ -20,27 +21,11 @@ const SignUp = ({location}) => {
 
     const checkout = async (values, location)=> {
         try {
-            const response = await axios.post("/api/airtable", {values})
-            const recordId = response.data.recordId
-            // build a check here
-            submitToPaymentApi(values, location, recordId) 
+            const response = await axios.post("/api/checkout", {values, location})
+            window.location = response.data.url;
         } catch (error) {
             console.log(error.message)
-        }
-    }
-
-    const submitToPaymentApi = async (values, location, recordId) => {
-        try {
-            const response = await axios.post("/api/payment", {
-                email: values.email,
-                cancelUrl: `${location.origin}/`,
-                successUrl: `${location.origin}/registration/?sessionId={CHECKOUT_SESSION_ID}`,
-                recordId: recordId
-            })
-            window.location = response.data.url;
-            // setSubmitted(false)
-        } catch (error) {
-            console.log("from payment:" + error.message)
+            setErrorMessage('Something went wrong')
         }
     }
 
@@ -53,11 +38,12 @@ const SignUp = ({location}) => {
                       }
                 })
                 const {recordId} = response.data
-                recordPaymentInDb(recordId)
                 setCompleteRegistration(true)
+                console.log(response)
                 
             } catch (error) {
                 console.log("from payment verification" + error.message)
+                setErrorMessage('Something went wrong')
             }
         }
     
@@ -66,17 +52,6 @@ const SignUp = ({location}) => {
             setSubmitted(true)
         }
     },[sessionId])
-
-
-    const recordPaymentInDb = async (recordId)=>{
-        try {
-            await axios.post("/api/updateRecord", {
-                recordId: recordId
-            })
-        } catch (error) {
-            console.log(error.message)
-        }
-    }
 
     const formik = useFormik({
         initialValues: {
@@ -96,7 +71,6 @@ const SignUp = ({location}) => {
             organization: Yup.string().required('Required'),
             email: Yup.string().email("Invalid email address").required('Required')
         }),
-        isInitialValid: false,
         onSubmit: (values, { resetForm }) => {
             checkout(values, location)
             setSubmitted(true)
@@ -110,8 +84,9 @@ const SignUp = ({location}) => {
         
         <FormContainer>
             {
-                completeRegistration ? <p className="confirmation-message"> 🎉 Thank you for your registration</p> : 
-                submitted ?  <p className='submitting-message'>Forwarding you to payment- This may take a moment.</p> :
+                completeRegistration ? <p className="confirmation-message"> Thank you for your registration 🎉</p> : 
+                submitted && !errorMessage ?  <p className='submitting-message'>Forwarding you to payment- This may take a moment.</p> :
+                submitted && errorMessage ? <p>{errorMessage}</p> :
                     <form noValidate onSubmit={formik.handleSubmit}>
                         <div className="input-container">
                             <label htmlFor="fullName">Full Name</label>
@@ -152,7 +127,7 @@ const SignUp = ({location}) => {
                             />
                             { formik.touched.email && formik.errors.email ? <p className="error-message">{formik.errors.email}</p> : null}
                         </div>
-                        <button type='submit' disabled={formik.isSubmitting || !formik.isValid} className='submit-button' >Proceed to payment</button>
+                        <button type='submit' disabled={formik.isSubmitting || !formik.initialErrors} className='submit-button' >Proceed to payment</button>
                     </form> 
             }
         </FormContainer>

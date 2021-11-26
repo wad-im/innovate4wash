@@ -1,4 +1,12 @@
 import Stripe from "stripe"
+import createError from "http-errors";
+import Airtable from "airtable"
+
+Airtable.configure({
+  endpointUrl: "https://api.airtable.com",
+  apiKey: process.env.AIRTABLE_API_KEY,
+})
+const database = Airtable.base(process.env.AIRTABLE_TABLE_ID)
 
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
 
@@ -31,28 +39,24 @@ export default async function handler(req, res) {
 const createStripeSession = async (req, res) => {
     const {successUrl, cancelUrl, email, recordId} = req.body
     
-    try {
-        const session = await stripe.checkout.sessions.create({
-            success_url: successUrl,
-            cancel_url: cancelUrl,
-            payment_method_types: ["card"],
-            line_items: [
-              {
-                price: process.env.STRIPE_PRICE_ID,
-                quantity: 1,
-              },
-            ],
-            mode: "payment",
-            customer_email: email,
-            metadata: {
-              dbRecordId: recordId,
-            },
-          });
-          res.json({ url: session.url })
     
-    } catch (error) {
-        res.status(500).json({message: error.message})
-    }
+    const session = await stripe.checkout.sessions.create({
+        success_url: successUrl,
+        cancel_url: cancelUrl,
+        payment_method_types: ["card"],
+        line_items: [
+          {
+            price: process.env.STRIPE_PRICE_ID,
+            quantity: 1,
+          },
+        ],
+        mode: "payment",
+        customer_email: email,
+        metadata: {
+          dbRecordId: recordId,
+        },
+      });
+      res.json({ url: session.url })
 }
 
 const fetchStripeSession = async (req, res) => {
@@ -67,10 +71,31 @@ const fetchStripeSession = async (req, res) => {
     if (sessionFromStripe.payment_status !== "paid") {
       console.log("Payment required")
     } else {
-      res.status(200).json({
-        message: "you successfully registered",
-        recordId: dbRecordId,
+
+      if (!dbRecordId){
+        res.status(400).json({message: 'Record Id is required'})
+      } else {
+        database('Online Registrations').update([
+          {
+          "id": dbRecordId,
+          "fields": {
+              "Complete Payment": true
+          }
+          }
+      ], (err, records) => {
+          if (err) {
+              res.json({
+                  message: "Error updating record to Airtable.",
+                  error: err.message,
+                })
+          } else {
+              res.status(200).json({ message: `Thank you for your registration`})
+          }
       });
+      }
+      // res.status(200).json({
+      //   message: "you successfully registered",
+      // });
     }
   } catch (error) {
       console.log(error)

@@ -37,12 +37,9 @@ const SignUp = ({location}) => {
                         sessionId: sessionId 
                       }
                 })
-                const {recordId} = response.data
                 setCompleteRegistration(true)
-                console.log(response)
-                
             } catch (error) {
-                console.log("from payment verification" + error.message)
+                console.log(error.message)
                 setErrorMessage('Something went wrong')
             }
         }

@@ -63,43 +63,37 @@ const fetchStripeSession = async (req, res) => {
 
   const {sessionId} = req.query
 
-  try {
-    const sessionFromStripe = await stripe.checkout.sessions.retrieve(sessionId);
-    const {dbRecordId} = sessionFromStripe.metadata
+  
+const sessionFromStripe = await stripe.checkout.sessions.retrieve(sessionId);
+const {dbRecordId} = sessionFromStripe.metadata
 
-    
-    if (sessionFromStripe.payment_status !== "paid") {
-      console.log("Payment required")
-    } else {
 
-      if (!dbRecordId){
-        res.status(400).json({message: 'Record Id is required'})
-      } else {
-        database('Online Registrations').update([
-          {
-          "id": dbRecordId,
-          "fields": {
-              "Complete Payment": true
-          }
-          }
-      ], (err, records) => {
-          if (err) {
-              res.json({
-                  message: "Error updating record to Airtable.",
-                  error: err.message,
-                })
-          } else {
-              res.status(200).json({ message: `Thank you for your registration`})
-          }
-      });
-      }
-      // res.status(200).json({
-      //   message: "you successfully registered",
-      // });
+if (sessionFromStripe.payment_status !== "paid") {
+  throw createError(402, "Payment still required");
+} 
+
+if (!dbRecordId){
+  res.status(400).json({message: 'Record Id is required'})
+} else {
+  database('Online Registrations').update([
+    {
+    "id": dbRecordId,
+    "fields": {
+        "Complete Payment": true
     }
-  } catch (error) {
-      console.log(error)
-  }
+    }
+], (err, records) => {
+    if (err) {
+        res.json({
+            message: "Error updating record to Airtable.",
+            error: err.message,
+          })
+    } else {
+        res.status(200).json({ message: `Thank you for your registration`})
+    }
+});
+}
+
 
 }
 

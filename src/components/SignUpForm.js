@@ -11,6 +11,7 @@ const SignUp = ({location}) => {
     const [submitted, setSubmitted] = useState(false)
     const [errorMessage, setErrorMessage] = useState(null)
     const [completeRegistration, setCompleteRegistration] = useState(false)
+    const [registrationName, setRegistrationName] = useState(null)
     const { sessionId } = queryString.parse(location.search);
 
     useLayoutEffect(() => {
@@ -37,6 +38,7 @@ const SignUp = ({location}) => {
                         sessionId: sessionId 
                       }
                 })
+                setRegistrationName(registrationName)
                 setCompleteRegistration(true)
             } catch (error) {
                 console.log(error.message)
@@ -81,7 +83,8 @@ const SignUp = ({location}) => {
         
         <FormContainer>
             {
-                completeRegistration ? <p className="confirmation-message"> Thank you for your registration 🎉</p> : 
+                completeRegistration && registrationName ? <p className="confirmation-message">{ registrationName }, thank you for your registration 🎉</p> : 
+                !registrationName ? <p className="confirmation-message">Thank you for your registration 🎉</p> : 
                 submitted && !errorMessage ?  <p className='submitting-message'>Forwarding you to payment- This may take a moment.</p> :
                 submitted && errorMessage ? <p>{errorMessage}</p> :
                     <form noValidate onSubmit={formik.handleSubmit}>

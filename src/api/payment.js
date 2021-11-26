@@ -89,7 +89,9 @@ if (!dbRecordId){
             error: err.message,
           })
     } else {
-        res.status(200).json({ message: `Thank you for your registration`})
+        const username = records[0].get('Name')
+        const firstName = username.split(' ')[0]
+        res.status(200).json({ message: `Thank you for your registration`, registrationName: firstName})
     }
 });
 }

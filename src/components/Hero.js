@@ -18,10 +18,10 @@ const HeroSection = () => {
                     Innovate4Water is a 2-day marketplace event to build bridges between the private sector and all the other key stakeholders leveraging water-related sector opportunities.
                 </p>
                 <div className="button-group">
-                    <Button to='/registration' classname='reg-button'>
+                    <Button to='/registration' className='reg-button'>
                         Save your spot
                     </Button>
-                    <a className='sponsor-button'>
+                    <a className='sponsor-button' href='/'>
                         I am interested to become a sponsor
                     </a>
                 </div>

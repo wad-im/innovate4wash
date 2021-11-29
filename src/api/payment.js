@@ -1,6 +1,7 @@
 import Stripe from "stripe"
 import createError from "http-errors";
 import Airtable from "airtable"
+import Sendgrid from '@sendgrid/mail'
 
 Airtable.configure({
   endpointUrl: "https://api.airtable.com",
@@ -9,6 +10,8 @@ Airtable.configure({
 const database = Airtable.base(process.env.AIRTABLE_TABLE_ID)
 
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
+
+Sendgrid.setApiKey(process.env.SENDGRID_API_KEY);
 
 export default async function handler(req, res) {
 
@@ -82,7 +85,7 @@ if (!dbRecordId){
         "Complete Payment": true
     }
     }
-], (err, records) => {
+], async (err, records) => {
     if (err) {
         res.json({
             message: "Error updating record to Airtable.",
@@ -91,7 +94,28 @@ if (!dbRecordId){
     } else {
         const username = records[0].get('Name')
         const firstName = username.split(' ')[0]
+        const userEmail = records[0].get('Email')
         res.status(200).json({ message: `Thank you for your registration`, registrationName: firstName})
+
+        // send confirmation email
+
+        const message = {
+          to: userEmail,
+          from: {
+            name: 'Wadim from Innovate4WASh',
+            email: process.env.SENDGRID_AUTHORIZED_EMAIL,
+          }, 
+          subject: 'Thank you for registering for Innovate4WASH',
+          text: `Dear ${firstName}, thank you registering for Innovate4WASH in Kisumu. We are looking forward to see you from January 27-28, 2022.`,
+          html: `<p>Dear ${firstName}, thank you registering for Innovate4WASH in Kisumu. We are looking forward to see you from January 27-28, 2022.</p>`,
+        };
+  
+        try {
+            await Sendgrid.send(message);
+        } catch (error) {
+            console.log(error)
+            res.status(500).json({message: "There was an error"})
+        }
     }
 });
 }

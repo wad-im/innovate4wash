@@ -102,12 +102,14 @@ if (!dbRecordId){
         const message = {
           to: userEmail,
           from: {
-            name: 'Wadim from Innovate4WASh',
+            name: 'Wadim from Innovate4WASH',
             email: process.env.SENDGRID_AUTHORIZED_EMAIL,
           }, 
-          subject: 'Thank you for registering for Innovate4WASH',
-          text: `Dear ${firstName}, thank you registering for Innovate4WASH in Kisumu. We are looking forward to see you from January 27-28, 2022.`,
-          html: `<p>Dear ${firstName}, thank you registering for Innovate4WASH in Kisumu. We are looking forward to see you from January 27-28, 2022.</p>`,
+          templateId: 'd-415f426c47754258848fa09cea0b91fe',
+          dynamicTemplateData: {
+            subject: 'Thanks for registering for Innovate4WASH 2022',
+            name: firstName,
+          },
         };
   
         try {

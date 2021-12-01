@@ -2,9 +2,9 @@ import { Link } from 'gatsby';
 import React from 'react';
 import styled from 'styled-components';
 
-const Button = ({children, classname, to}) => {
+const Button = ({children, className, to}) => {
     return ( 
-        <StyledButton classname={classname} to={to}>
+        <StyledButton className={className} to={to}>
             {children}
         </StyledButton>
      );

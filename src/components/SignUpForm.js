@@ -143,6 +143,10 @@ const FormContainer = styled.div`
     padding: 2rem;
     background-color: #137a757d;
     border-radius: 1rem;
+    height: fit-content;
+    box-shadow: 
+        0 0.625rem 0.9375rem -0.1875rem rgba(0, 0, 0, 0.1),
+        0 .25rem .375rem -0.125rem rgba(0, 0, 0, 0.05);
     form {
         display: grid;
         grid-row-gap: 1.5rem;

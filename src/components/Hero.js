@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import Button from './Button';
-// import {StaticImage} from 'gatsby-plugin-image'
 import BlobImage from './BlobImage';
 
 const HeroSection = () => {
@@ -12,21 +11,20 @@ const HeroSection = () => {
                     <span>The next solution</span> for water is here. 
                 </h1>
                 <span className='subtitle'>
-                    January 27 -28, 2022 • Acacia Premier Hotel Kisumu 
+                    January 27 -28, 2022 • Ciala Resort Kisumu 
                 </span>
                 <p className='details'>
-                    Innovate4Water is a 2-day marketplace event to build bridges between the private sector and all the other key stakeholders leveraging water-related sector opportunities.
+                    Innovate4WASH is a 2-day marketplace event to build bridges between the private sector and all the other key stakeholders leveraging water-related sector opportunities.
                 </p>
                 <div className="button-group">
                     <Button to='/registration' className='reg-button'>
-                        Save your spot
+                        Invite me! I'd love to participate
                     </Button>
                     <a className='sponsor-button' href='/'>
                         I am interested to become a sponsor
                     </a>
                 </div>
             </div>
-            {/* <StaticImage src='../images/heroImage.jpg' alt='hero image' className='hero-image'/> */}
             <BlobImage className='hero-image'/>
         </HeroContainer>
      );

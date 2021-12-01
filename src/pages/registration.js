@@ -12,7 +12,7 @@ const RegistrationPage = ({location}) => {
             <RegistrationContainer>
                 <div className="title">
                     <h1>Secure <span>your spot</span> today!</h1>
-                    <span className="subtitle">87 innovators, investors and enablers confirmed their participation.</span>
+                    <span className="subtitle">87 innovators, investors and enablers already confirmed their participation.</span>
                 </div>
                 <div className="ticket-info">
                     <Ticket/>

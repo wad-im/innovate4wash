@@ -11,13 +11,13 @@ const HeroSection = () => {
                     <span>The next solution</span> for water is here. 
                 </h1>
                 <span className='subtitle'>
-                    January 27 -28, 2022 • Ciala Resort Kisumu 
+                    January 27 - 28, 2022 • Ciala Resort Kisumu 
                 </span>
                 <p className='details'>
-                    Innovate4WASH is a 2-day marketplace event to build bridges between the private sector and all the other key stakeholders leveraging water-related sector opportunities.
+                Innovate4WASH is a two-day marketplace platform designed to connect <strong>ideas, talent and capital</strong>, from and outside of Kenya, to scale-up existing commercial solutions to problems and opportunities in the water and sanitation sector.
                 </p>
                 <div className="button-group">
-                    <Button to='/registration' className='reg-button'>
+                    <Button to='/invite-me' className='reg-button'>
                         Invite me! I'd love to participate
                     </Button>
                     <a className='sponsor-button' href='/'>

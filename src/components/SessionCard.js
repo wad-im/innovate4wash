@@ -26,7 +26,7 @@ const SessionCard = ({sessionDetails}) => {
                                 pitch.speaker.map(eachSpeaker => (
                                     <div key={eachSpeaker.id} className='speaker'>
                                         <p className='speaker-name'>by {eachSpeaker.fullName}</p>
-                                        <p>from {eachSpeaker.organization}</p>
+                                        <p>{eachSpeaker.organization}</p>
                                     </div>
                                 ))
                             }
@@ -55,10 +55,8 @@ const SessionCardContainer = styled.article`
         grid-template-columns: 60% 40%;
         grid-column-gap: 2rem;
     }
-    .speaker {
-        p {
-            margin-bottom: 0;
-        }
+    .speaker p {
+        margin-bottom: 0;
     }
     .speaker-name {
         font-weight: 700;

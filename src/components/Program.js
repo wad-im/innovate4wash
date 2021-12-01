@@ -81,7 +81,8 @@ const ProgramContainer = styled.section`
         }
     }
     .day-1 {
-        background-color: #00605C;
+      background: rgb(0,96,92);
+      background: linear-gradient(45deg, rgba(0,96,92,1) 0%, rgba(0,112,108,1) 75%);
         color: #4DEBEB;
         .hr {
           background-color: #4DEBEB;
@@ -90,7 +91,8 @@ const ProgramContainer = styled.section`
         }
     }
     .day-2 {
-        background-color: #037777;
+      background: rgb(3,119,119);
+      background: linear-gradient(45deg, rgba(3,119,119,1) 0%, rgba(4,133,133,1) 75%);
         color: #06EFEF;
         .hr {
           background-color: #06EFEF;

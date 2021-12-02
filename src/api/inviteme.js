@@ -1,7 +1,6 @@
 import Airtable from "airtable"
 import Sendgrid from '@sendgrid/mail'
 import createError from "http-errors";
-import axios from "axios"
 
 Airtable.configure({
   endpointUrl: "https://api.airtable.com",
@@ -20,32 +19,33 @@ export default async function handler(req, res) {
         res.status(400).json({message: 'Registration information required'})
     } else {
         try {
-            database("Invitation Requests").create(
-                [
-                  {
-                    fields: {
-                      "Name": values.fullName,
-                      "Organization": values.organization,
-                      "Email": values.email,
-                    },
+
+          database("Invitation Requests").create(
+              [
+                {
+                  fields: {
+                    "Name": values.fullName,
+                    "Organization": values.organization,
+                    "Email": values.email,
                   },
-                ],
-                async (err, records) => {
-                  if (err) {
-                    res.json({
-                      message: "Error adding record to Airtable.",
-                      error: err.message,
-                    })
-                  } else {
-                    const username = records[0].get('Name')
-                    const firstName = username.split(' ')[0]
-                    const userEmail = records[0].get('Email')
-                    const userOrganization = records[0].get('Organization')
-                    res.status(200).json({ message: `Thank you for your interest to join Innovate4WASH`, registrationName: firstName})
+                },
+              ],
+              async (err, records) => {
+                if (err) {
+                  res.json({
+                    message: "Error adding record to Airtable.",
+                    error: err.message,
+                  })
+                } else {
+                  const username = records[0].get('Name')
+                  const firstName = username.split(' ')[0]
+                  const userEmail = records[0].get('Email')
+                  const userOrganization = records[0].get('Organization')
+                  res.status(200).json({ message: `Thank you for your interest to join Innovate4WASH`, registrationName: firstName})
 
-                    // send confirmation email
+                  // send confirmation email
 
-                    const message = {
+                  const message = {
                     to: userEmail,
                     from: {
                         name: 'Wadim from Innovate4WASH',
@@ -58,20 +58,20 @@ export default async function handler(req, res) {
                         organization: userOrganization
 
                     },
-                    };
-            
-                    try {
-                        await Sendgrid.send(message);
-                    } catch (error) {
-                        console.log(error)
-                        res.status(500).json({message: "There was an error"})
-                    }
-                            }
-                            }
-                        )
-                    } catch (error) {
-                        res.status(500).json({message: error.message})
-                    }
+                  };
+          
+                  try {
+                      await Sendgrid.send(message);
+                  } catch (error) {
+                      console.log(error)
+                      res.status(500).json({message: "There was an error"})
+                  }
+                }
+              }
+          )
+          } catch (error) {
+              res.status(500).json({message: error.message})
+          }
     }
 
 }

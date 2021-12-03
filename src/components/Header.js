@@ -34,4 +34,7 @@ const HeaderContainer = styled.header`
         }
     }
     padding: 1.5rem 0rem;
+    @media screen and (max-width: 588px){
+       grid-column: 2 / span 6;
+    }
 `

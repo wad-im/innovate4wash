@@ -30,5 +30,12 @@ const LayoutContainer = styled.div`
     .content-container {
         grid-column: 2 / span 12;
     }
+    @media screen and (max-width: 588px){
+        grid-template-columns: 1rem repeat(6, minmax(auto, 4rem)) 1rem;
+        grid-column-gap: 1rem;
+        .content-container {
+            grid-column: 2 / span 6;
+        }
+    }
 `
 

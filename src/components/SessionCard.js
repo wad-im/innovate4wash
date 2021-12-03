@@ -67,4 +67,23 @@ const SessionCardContainer = styled.article`
         height: 0.05rem;
         margin-top: 2rem;
     }
+    @media screen and (max-width: 994px){
+      grid-template-columns: 100%;
+      .hr {
+          grid-column: 1 / span 1;
+      }
+    }
+    @media screen and (max-width: 588px){
+        .session-desc {
+            width: 100%;
+        }
+        .pitch {
+            grid-template-columns: 100%;
+            .speaker {
+                margin-bottom: 1rem;
+                text-align: right;
+                align-self: flex-end;
+            }
+        }
+    }
 `

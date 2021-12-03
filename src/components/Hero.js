@@ -59,15 +59,38 @@ const HeroContainer = styled.section`
     }
     .button-group {
         display: flex;
+        flex-direction: column;
         align-items: center;
+        width: fit-content;
         .sponsor-button {
-            margin-left: 1rem;
+            /* margin-left: 1rem; */
+            margin-top: 0.5rem;
             text-decoration: underline;
             cursor: pointer;
+            font-size: 0.8rem;
         }
     }
     .hero-image {
         transform: scale(0.8);
-        border-radius: 30% 70% 70% 30% / 30% 30% 70% 70% 
+        /* border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%  */
+    }
+    @media screen and (max-width: 994px){
+        .hero-text {
+            grid-column: 1 / span 2;
+            grid-row: 1 / span 1;
+            z-index: 1;
+            text-align: center;
+            span {
+                color: #06EFEF;
+            }
+        }
+        .hero-image {
+            grid-column: 1 / span 2;
+            grid-row: 1 / span 1;
+        }
+        .button-group {
+            align-items: center;
+            width: 100%;
+        }
     }
 `

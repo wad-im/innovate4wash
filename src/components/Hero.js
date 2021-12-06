@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Button from './Button';
 import BlobImage from './BlobImage';
+import { Link } from 'gatsby';
 
 const HeroSection = () => {
     return ( 
@@ -20,9 +21,10 @@ const HeroSection = () => {
                     <Button to='/invite-me' className='reg-button'>
                         Invite me! I'd love to participate
                     </Button>
-                    <a className='sponsor-button' href='/'>
+                    {/* <a className='sponsor-button' href='/'>
                         I am interested to become a sponsor
-                    </a>
+                    </a> */}
+                    <Link to='/about#sponsorship' className='sponsor-button'>I am interested to become a sponsor</Link>
                 </div>
             </div>
             <BlobImage className='hero-image'/>

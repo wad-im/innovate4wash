@@ -40,27 +40,35 @@ const Program = () => {
                 <span className="date">27 January 2022</span>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sodales duis amet dignissim eget. A vestibulum eu non dapibus sed montes, massa posuere diam. Velit facilisis egestas viverra ullamcorper.</p>
                 <div className="hr" aria-hidden="true"></div>
-
-                {
-                  sessionsOnDay1.map(({node}) => (
-                    <SessionCard key={node.id} sessionDetails={node}/>
-                  ))
-                }
-
+                <div className="program-items">
+                  {
+                    sessionsOnDay1.map(({node}) => (
+                      <SessionCard key={node.id} sessionDetails={node}/>
+                    ))
+                  }
+                <div className="overlay">
+                  Coming soon
+                </div>
+                </div>
             </div>
             <div className=" day day-2">
                 <h2>Day 2</h2>
                 <span className="date">28 January 2022</span>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sodales duis amet dignissim eget. A vestibulum eu non dapibus sed montes, massa posuere diam. Velit facilisis egestas viverra ullamcorper.</p>
                 <div className="hr" aria-hidden="true"></div>
-
-                {
-                  sessionsOnDay2.map(({node}) => (
-                    <SessionCard key={node.id} sessionDetails={node}/>
-                  ))
-                }
-
+                <div className="program-items">
+                  {
+                    sessionsOnDay2.map(({node}) => (
+                      <SessionCard key={node.id} sessionDetails={node}/>
+                    ))
+                  }
+                <div className="overlay">
+                  Coming soon
+                </div>
+                </div>
+            
             </div>
+            
         </ProgramContainer>
      );
 }
@@ -69,16 +77,35 @@ export default Program;
 
 const ProgramContainer = styled.section`
     margin-top: 3.052rem;
+    
     .day {
-        border-radius: 1rem;
-        padding: 2rem;
-        margin-bottom: 2rem;
-        box-shadow: 
-        0 .625rem .9375rem -0.1875rem rgba(0, 0, 0, 0.1),
-        0 .25rem .375rem -0.125rem rgba(0, 0, 0, 0.05);
-        h2, p, .date {
-            margin-bottom: 16px;
-        }
+      overflow: hidden;
+      border-radius: 1rem;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 
+      0 .625rem .9375rem -0.1875rem rgba(0, 0, 0, 0.1),
+      0 .25rem .375rem -0.125rem rgba(0, 0, 0, 0.05);
+      h2, p, .date {
+          margin-bottom: 16px;
+      }
+    }
+    .program-items {
+      position: relative;
+    }
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2.441rem;
+      line-height: 1.3;
+      font-weight: 700;
+      text-align: center;
     }
     .day-1 {
       background: rgb(0,96,92);
@@ -89,7 +116,11 @@ const ProgramContainer = styled.section`
           height: 0.05rem;
           margin-top: 2rem;
         }
+        .overlay {
+          background: linear-gradient(45deg, rgba(0,96,92,0.9) 0%, rgba(0,112,108,0.9) 75%);
+        }
     }
+    
     .day-2 {
       background: rgb(3,119,119);
       background: linear-gradient(45deg, rgba(3,119,119,1) 0%, rgba(4,133,133,1) 75%);
@@ -98,6 +129,9 @@ const ProgramContainer = styled.section`
           background-color: #06EFEF;
           height: 0.05rem;
           margin-top: 2rem;
+        }
+        .overlay {
+          background: linear-gradient(45deg, rgba(3,119,119,0.9) 0%, rgba(4,133,133,0.9) 75%);
         }
     }
     .date {

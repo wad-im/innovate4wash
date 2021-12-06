@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Button from './Button';
-import BlobImage from './BlobImage';
+import HeroImage from './BlobImage';
 import { Link } from 'gatsby';
 
 const HeroSection = () => {
@@ -21,13 +21,10 @@ const HeroSection = () => {
                     <Button to='/invite-me' className='reg-button'>
                         Invite me! I'd love to participate
                     </Button>
-                    {/* <a className='sponsor-button' href='/'>
-                        I am interested to become a sponsor
-                    </a> */}
                     <Link to='/about#sponsorship' className='sponsor-button'>I am interested to become a sponsor</Link>
                 </div>
             </div>
-            <BlobImage className='hero-image'/>
+            <HeroImage className='hero-image'/>
         </HeroContainer>
      );
 }
@@ -77,6 +74,7 @@ const HeroContainer = styled.section`
         /* border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%  */
     }
     @media screen and (max-width: 994px){
+        height: fit-content;
         .hero-text {
             grid-column: 1 / span 2;
             grid-row: 1 / span 1;

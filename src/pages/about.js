@@ -43,6 +43,7 @@ const AboutPage = () => {
                         }
                     </div>
                 </section>
+
                 <section className="event-elements">
                     <h2>// Elements</h2>
                     <div className="element">
@@ -173,6 +174,12 @@ const AboutPageContainer = styled.div`
         h2 {
             grid-column: 1 / span 3;
             margin-bottom: 2rem;
+        }
+        h3 {
+            margin-top: 1rem;
+        }
+        .element svg {
+            max-height: 320px;
         }
     }
     .sponsorship {

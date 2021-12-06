@@ -35,6 +35,8 @@ const LayoutContainer = styled.div`
         grid-column-gap: 1rem;
         .content-container {
             grid-column: 2 / span 6;
+            display: flex;
+            flex-direction: column;
         }
     }
 `

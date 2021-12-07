@@ -32,7 +32,7 @@ const HeroSection = () => {
 export default HeroSection;
 
 const HeroContainer = styled.section`
-    height: 50vh;
+    height: 60vh;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-column-gap: 2rem;

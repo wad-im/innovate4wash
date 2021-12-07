@@ -74,7 +74,6 @@ const Seo = ({title, description, metaImage, robotParam, author}) => {
           {/* <meta name="googlebot" content={seo.robotParam}/> */}
           {/* <meta name="robots" content={seo.robotParam} /> */}
 
-
         </Helmet>
       )
 }

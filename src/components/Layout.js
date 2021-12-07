@@ -2,11 +2,13 @@ import React from 'react'
 import styled from 'styled-components'
 import Header from './Header'
 import Footer from './Footer'
+import Seo from './Seo'
 
 
-const Layout = ({children})=>{
+const Layout = ({children, pageTitle, pageDescription, pageMetaImage})=>{
     return (
         <LayoutContainer>
+            <Seo title={pageTitle} description={pageDescription} metaImage={pageMetaImage}/>
             <Header/>
             <main className='content-container'>
                 {children}

@@ -5,7 +5,7 @@ import Layout from "../components/Layout"
 
 const InviteMePage = () => {
     return (  
-        <Layout>
+        <Layout pageTitle='Invite me!'>
             <InviteMeContainer>
                 <div className='invitation-details'>
                     <h1 className="title">Get <span>your spot</span> on the invitation list!</h1>

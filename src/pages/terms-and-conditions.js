@@ -3,7 +3,7 @@ import Layout from '../components/Layout';
 
 const PrivacyPolicy = () => {
     return ( 
-        <Layout>
+        <Layout pageTitle='Terms & Conditions'>
             <h1>Terms and Conditions</h1>
         </Layout>
      );

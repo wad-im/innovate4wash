@@ -19,6 +19,7 @@ export const Form = () => css`
     label {
         font-weight: 700;
         margin-bottom: 0.25rem;
+        width: 100%;
     }
     input {
         background: none;

@@ -7,7 +7,7 @@ const AboutPage = () => {
     const topics = ['Financing and investing in opportunities in the WASH sector', 'Enabling innovations in WASH', 'Innovations for operators and utilities','Safe and Clean Water', 'Energy Efficiency', 'Off-grid and smart technologies', 'Wastewater Treatment Technologies', 'Public-Private Partnerships']
 
     return ( 
-        <Layout>
+        <Layout pageTitle='About'>
             <AboutPageContainer>
                 <section className="intro">
                     <h1>Designed to <span>close the gap</span>.</h1>

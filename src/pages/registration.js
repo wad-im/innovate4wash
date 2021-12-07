@@ -8,7 +8,7 @@ import Ticket from '../components/Ticket';
 const RegistrationPage = ({location}) => {
 
     return ( 
-        <Layout>
+        <Layout pageTitle='Registration'>
             <RegistrationContainer>
                 <div className="title">
                     <h1>Secure <span>your spot</span> today!</h1>

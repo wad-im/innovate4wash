@@ -72,6 +72,7 @@ module.exports = {
       resolve: `gatsby-plugin-react-helmet-canonical-urls`,
       options: {
         siteUrl: `https://innovate4wash.quercus-group.com`,
+        noTrailingSlash: true,
       },
     },
     `gatsby-plugin-remove-trailing-slashes`,

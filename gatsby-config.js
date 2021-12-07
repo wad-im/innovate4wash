@@ -52,7 +52,7 @@ module.exports = {
     {
       resolve: `@raae/gatsby-plugin-fathom`,
       options: {
-        site: "OAHGTWLB",
+        site: "WVJEMMZV",
       },
     },
     {

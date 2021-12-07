@@ -38,7 +38,7 @@ const Program = () => {
             <div className=" day day-1">
                 <h2>Day 1</h2>
                 <span className="date">27 January 2022</span>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sodales duis amet dignissim eget. A vestibulum eu non dapibus sed montes, massa posuere diam. Velit facilisis egestas viverra ullamcorper.</p>
+                <p>We publish the first day's program here shortly before Innovate4WASH.</p>
                 <div className="hr" aria-hidden="true"></div>
                 <div className="program-items">
                   {
@@ -54,7 +54,7 @@ const Program = () => {
             <div className=" day day-2">
                 <h2>Day 2</h2>
                 <span className="date">28 January 2022</span>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sodales duis amet dignissim eget. A vestibulum eu non dapibus sed montes, massa posuere diam. Velit facilisis egestas viverra ullamcorper.</p>
+                <p>We publish the second day's program here shortly before Innovate4WASH.</p>
                 <div className="hr" aria-hidden="true"></div>
                 <div className="program-items">
                   {

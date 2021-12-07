@@ -33,11 +33,10 @@ module.exports = {
       __key: "images",
     },
     {
-      resolve: `gatsby-plugin-advanced-sitemap`,
+      resolve: "gatsby-plugin-sitemap",
       options: {
-        createLinkInHead: true, 
-        addUncaughtPages: true,
-        exclude: [
+        createLinkInHead: true,
+        excludes: [
           `/404`,
           `/404.html`,
           `/registration.html`,
@@ -49,6 +48,23 @@ module.exports = {
         ]
       }
     },
+    // {
+    //   resolve: `gatsby-plugin-advanced-sitemap`,
+    //   options: {
+    //     createLinkInHead: true, 
+    //     addUncaughtPages: true,
+    //     exclude: [
+    //       `/404`,
+    //       `/404.html`,
+    //       `/registration.html`,
+    //       `/registration`,
+    //       `/terms-and-conditions.html`,
+    //       `/terms-and-conditions`,
+    //       `/privacy-policy.html`,
+    //       `/privacy-policy`,
+    //     ]
+    //   }
+    // },
     {
       resolve: `@raae/gatsby-plugin-fathom`,
       options: {

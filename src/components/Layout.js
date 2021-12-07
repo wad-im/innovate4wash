@@ -39,5 +39,9 @@ const LayoutContainer = styled.div`
             flex-direction: column;
         }
     }
+    @media screen and (max-width: 398px){
+        grid-template-columns: 0.5rem repeat(6, minmax(auto, 4rem)) 0.5rem;
+        grid-column-gap: 0.5rem;
+    }
 `
 

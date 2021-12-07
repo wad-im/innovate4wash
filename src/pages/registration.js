@@ -79,4 +79,20 @@ const RegistrationContainer = styled.div`
             color: #dedede;
         }
     }
+    @media screen and (max-width: 994px) {
+        .ticket-info {
+            grid-column: 1 / span 2;
+        }
+    }
+    @media screen and (max-width: 588px){
+        .features {
+            grid-row-gap: 1rem;
+        }
+        .feature {
+            grid-column: 1 / span 2;
+        }
+        .title h1 {
+            margin-bottom: 1rem;
+        }
+    }
 `

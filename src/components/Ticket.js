@@ -55,4 +55,20 @@ const TicketContainer = styled.div`
         align-self: flex-end;
         text-align: right;
     }
+    @media screen and (max-width: 588px){
+        grid-row-gap: 1rem;
+        img {
+            max-height: 48px;
+        }
+        h2 {
+            font-size: 1.953rem;
+        }
+        span {
+            font-size: 1rem;
+        }
+    }
+    @media screen and (max-width: 398px){
+        grid-row-gap: 0.5rem;
+        padding: 1.5rem;
+    }
 `

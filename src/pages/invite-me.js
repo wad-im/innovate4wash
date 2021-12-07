@@ -118,4 +118,21 @@ const InviteMeContainer = styled.div`
     p {
         color: #dedede;
     }
+    @media screen and (max-width: 994px){
+        .invitation-details {
+            grid-column: 1 / span 2;
+        }
+    }
+    @media screen and (max-width: 588px){
+        .boxes, .features, .steps {
+            grid-template-columns: 1fr;
+            grid-column-gap: 0rem;
+        }
+        .box {
+            margin-bottom: 1rem;
+        }
+        .features {
+            margin-bottom: 0rem;
+        }
+    }
 `

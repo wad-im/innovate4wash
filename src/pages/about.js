@@ -36,7 +36,7 @@ const AboutPage = () => {
                     <div className="topics-labels">
                         {
                             topics.map((topic) => (
-                                <span className="topic-label">
+                                <span key={topic} className="topic-label">
                                     {topic}
                                 </span>
                             ))
@@ -117,7 +117,6 @@ const AboutPageContainer = styled.div`
     .who-participates {
         border-radius: 1rem;
         padding: 2rem;
-        margin-bottom: 2rem;
         box-shadow: 
         0 .625rem .9375rem -0.1875rem rgba(0, 0, 0, 0.1),
         0 .25rem .375rem -0.125rem rgba(0, 0, 0, 0.05);
@@ -178,9 +177,6 @@ const AboutPageContainer = styled.div`
         h3 {
             margin-top: 1rem;
         }
-        .element svg {
-            max-height: 320px;
-        }
     }
     .sponsorship {
         border-radius: 1rem;
@@ -202,6 +198,7 @@ const AboutPageContainer = styled.div`
             }
             span {
                 color: #fff;
+                display: inline-block;
             }
         }
         .sponsor-benefits {
@@ -217,6 +214,30 @@ const AboutPageContainer = styled.div`
             .contact {
                 margin-bottom: 1rem;
             }
+        }
+    }
+    @media screen and (max-width: 588px){
+        section {
+            padding: 1rem;
+            margin-bottom: 2rem;
+        }
+        .intro h1, .intro p, .participant-group {
+            grid-column: 1 / span 3;
+        }
+        .who-participates h3 {
+            margin: 1rem 0 0.5rem 0;
+        }
+        .event-elements .element {
+            grid-column: 1 / span 3;
+            h3 {
+                margin: 1rem 0 0.5rem 0;
+            }
+        }
+        .sponsor-benefits, .sponsor-contacts {
+            grid-column: 1 / span 2;
+        }
+        .sponsorship h2 {
+            font-size: 1.953rem;
         }
     }
 ` 

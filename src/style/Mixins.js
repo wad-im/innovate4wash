@@ -78,5 +78,8 @@ export const Form = () => css`
             cursor: not-allowed;
         }
     }
+    @media screen and (max-width: 398px){
+        padding: 1.5rem;
+    }
 `
 

@@ -156,4 +156,8 @@ export default SignUp;
 
 const FormContainer = styled.div`
     ${Form()}
+    @media screen and (max-width: 994px){
+        grid-column: 1 / span 2;
+        margin-bottom: 3.052rem;
+    }
 `

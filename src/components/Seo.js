@@ -11,6 +11,7 @@ const query = graphql`
         defaultDescription: description
         defaultAuthor
         siteUrl
+        defaultImage: image
         defaultColor: themeColor
       }
     }

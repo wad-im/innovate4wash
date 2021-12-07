@@ -48,23 +48,6 @@ module.exports = {
         ]
       }
     },
-    // {
-    //   resolve: `gatsby-plugin-advanced-sitemap`,
-    //   options: {
-    //     createLinkInHead: true, 
-    //     addUncaughtPages: true,
-    //     exclude: [
-    //       `/404`,
-    //       `/404.html`,
-    //       `/registration.html`,
-    //       `/registration`,
-    //       `/terms-and-conditions.html`,
-    //       `/terms-and-conditions`,
-    //       `/privacy-policy.html`,
-    //       `/privacy-policy`,
-    //     ]
-    //   }
-    // },
     {
       resolve: `@raae/gatsby-plugin-fathom`,
       options: {

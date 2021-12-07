@@ -7,7 +7,7 @@ module.exports = {
     title: "Innovate4WASH Kisumu 2022",
     description: "Innovate4WASH is a two-day marketplace platform for innovators, investors and enablers in Kenya's WASH sector.",
     defaultAuthor: "Quercus Group",
-    // image: '/metaImage-quercusGrop-main.jpg',
+    image: '/mainMetaImage.jpg',
     themeColor: "#137A75"
   },
   plugins: [

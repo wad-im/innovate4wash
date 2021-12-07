@@ -66,9 +66,10 @@ const Seo = ({title, description, metaImage, robotParam, author}) => {
           <meta itemprop="description" content={site.description}/>
           {/* <meta itemprop="image" content={seo.image}/> */}
             
-          <meta name="theme-color" content={seo.defaultcolor}/>
+          <meta name="theme-color" content={seo.color}/>
           <meta name="msapplication-navbutton-color" content={seo.color}/>
           <meta name="apple-mobile-web-app-status-bar-style" content={seo.color}/>
+
 
           {/* <meta name="googlebot" content={seo.robotParam}/> */}
           {/* <meta name="robots" content={seo.robotParam} /> */}

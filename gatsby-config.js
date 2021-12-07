@@ -8,7 +8,7 @@ module.exports = {
     description: "Innovate4WASH is a two-day marketplace platform for innovators, investors and enablers in Kenya's WASH sector.",
     defaultAuthor: "Quercus Group",
     // image: '/metaImage-quercusGrop-main.jpg',
-    themeColor: "#023C3C"
+    themeColor: "#137A75"
   },
   plugins: [
     {
@@ -55,6 +55,26 @@ module.exports = {
         site: "WVJEMMZV",
       },
     },
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `Innovate4WASH Kisumu 2022`,
+        short_name: `Innovoate4WASH`,
+        start_url: `/`,
+        background_color: `#023C3C`,
+        theme_color: `#137A75`,
+        display: `standalone`,
+        icon: 'src/images/icon.svg',
+        lang: `en`,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-react-helmet-canonical-urls`,
+      options: {
+        siteUrl: `https://innovate4wash.quercus-group.com`,
+      },
+    },
+    `gatsby-plugin-remove-trailing-slashes`,
     {
       resolve: "gatsby-omni-font-loader",
       options: {

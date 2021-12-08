@@ -10,7 +10,7 @@ const Footer = () => {
                 <div className='copyright'> &copy;{new Date().getFullYear()} Quercus Group</div>
             </div>
             <div className="legal">
-                <Link to='/terms-and-conditions' className="link">Terms and Conditions</Link>
+                <Link to='/terms-and-conditions' className="link">Terms of use</Link>
                 <Link to='/privacy-policy' className="link">Privacy Policy</Link>
             </div>
         </FooterContainer>

@@ -6,6 +6,7 @@ import * as Yup from 'yup'
 import axios from 'axios';
 import queryString from "query-string";
 import { Form } from '../style/Mixins';
+import { Link } from 'gatsby';
 
 const SignUp = ({location}) => {
 
@@ -145,6 +146,9 @@ const SignUp = ({location}) => {
                     <button type='submit' disabled={formik.isSubmitting || !formik.initialErrors} className='submit-button' >Proceed to payment</button>
                 </form> 
             }
+            <div className="notice">
+                <p>Please read the <Link to='/terms-and-conditions'>Terms of use</Link> and our <Link to='privacy-policy'>Privacy Policy</Link> before submitting the form.</p>
+            </div>
         </FormContainer>
 
 

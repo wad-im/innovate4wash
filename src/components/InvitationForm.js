@@ -4,6 +4,7 @@ import {Form} from '../style/Mixins';
 import { useFormik } from 'formik';
 import * as Yup from 'yup'
 import axios from 'axios';
+import { Link } from 'gatsby';
 
 const InvitationForm = () => {
     
@@ -110,6 +111,9 @@ const InvitationForm = () => {
                     <button type='submit' disabled={formik.isSubmitting || !formik.initialErrors} className='submit-button' >Invite me!</button>
                 </form> 
             }
+            <div className="notice">
+                <p>Please read the <Link to='/terms-and-conditions'>Terms of use</Link> and our <Link to='privacy-policy'>Privacy Policy</Link> before submitting the form.</p>
+            </div>
         </FormContainer>
      );
 }

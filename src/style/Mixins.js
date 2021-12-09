@@ -79,6 +79,15 @@ export const Form = () => css`
             cursor: not-allowed;
         }
     }
+    .notice {
+        margin-top: 1rem;
+        p, a {
+            font-size: 0.8rem;
+        }
+        a {
+            color: #1AA19B;
+        }
+    }
     @media screen and (max-width: 398px){
         padding: 1.5rem;
     }

@@ -111,9 +111,13 @@ const InvitationForm = () => {
                     <button type='submit' disabled={formik.isSubmitting || !formik.initialErrors} className='submit-button' >Invite me!</button>
                 </form> 
             }
-            <div className="notice">
-                <p>Please read the <Link to='/terms-and-conditions'>Terms of use</Link> and our <Link to='privacy-policy'>Privacy Policy</Link> before submitting the form.</p>
-            </div>
+            {
+                feedback ? null : 
+                <div className="notice">
+                    <p>Please read the <Link to='/terms-and-conditions'>Terms of use</Link> and our <Link to='privacy-policy'>Privacy Policy</Link> before submitting the form.</p>
+                </div>
+            }
+            
         </FormContainer>
      );
 }

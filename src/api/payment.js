@@ -78,7 +78,7 @@ if (sessionFromStripe.payment_status !== "paid") {
 if (!dbRecordId){
   res.status(400).json({message: 'Record Id is required'})
 } else {
-  database('Online Registrations').update([
+  database('Registrations').update([
     {
     "id": dbRecordId,
     "fields": {

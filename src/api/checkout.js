@@ -16,7 +16,7 @@ export default async function handler(req, res) {
         res.status(400).json({message: 'Registration information required'})
     } else {
         try {
-            database("Online Registrations").create(
+            database("Registrations").create(
                 [
                   {
                     fields: {

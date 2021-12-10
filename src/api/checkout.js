@@ -23,7 +23,8 @@ export default async function handler(req, res) {
                       "Name": values.fullName,
                       "Organization": values.organization,
                       "Email": values.email,
-                      "Complete Registration": true
+                      "Complete Registration": true,
+                      "Registration Type": "Online Registration"
                     },
                   },
                 ],

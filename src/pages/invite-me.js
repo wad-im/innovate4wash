@@ -3,6 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 import InvitationForm from '../components/InvitationForm';
 import Layout from "../components/Layout"
+import ParticipatingOrganization from '../components/ParticipatingOrganizations';
 
 const InviteMePage = () => {
     return (  
@@ -60,7 +61,10 @@ const InviteMePage = () => {
                         </div>
                     </div>
                 </div>
-                <InvitationForm/>
+                <div className="right-column">
+                    <InvitationForm/>
+                    <ParticipatingOrganization/>
+                </div>
             </InviteMeContainer>
         </Layout>
     );

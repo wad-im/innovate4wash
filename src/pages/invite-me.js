@@ -127,6 +127,9 @@ const InviteMeContainer = styled.div`
         .invitation-details {
             grid-column: 1 / span 2;
         }
+        .right-column {
+            grid-column: 1 / span 2;
+        }
     }
     @media screen and (max-width: 588px){
         .boxes, .features, .steps {

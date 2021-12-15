@@ -37,7 +37,7 @@ export default ParticipatingOrganization;
 
 const Container = styled.div`
     padding: 0 2rem;
-    margin-top: 2rem;
+    margin: 2rem 0;
     .tags {
         display: flex;
         justify-content: flex-start;
@@ -65,5 +65,8 @@ const Container = styled.div`
         margin: 0.25rem 0.25rem 0.25rem 0.25rem;
         background: rgb(13,82,79);
         background: linear-gradient(45deg, rgba(13,82,79,1) 0%, rgba(19,122,117,1) 75%);
+    }
+    @media screen and (max-width: 588px){
+        padding: 0 1rem;
     }
 `

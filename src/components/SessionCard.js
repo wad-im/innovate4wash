@@ -21,7 +21,7 @@ const SessionCard = ({sessionDetails}) => {
                 <p className='session-desc'>{description}</p>
                 <button className="expand-session" onClick={expandInfo}>{isOpen ? 'Show less' : 'Show more'}</button>
                 <AnimatePresence>
-                {   isOpen && 
+                {   isOpen && pitchespresentations &&
                     pitchespresentations.map(pitch => (
                         <motion.div
                             key={pitch.id} 
@@ -30,15 +30,15 @@ const SessionCard = ({sessionDetails}) => {
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}>
                             <div className="pitch-main">
-                                <h5>{pitch.title}</h5>
-                                <p>{pitch.description}</p>
+                                <h5>{pitch.title && pitch.title }</h5>
+                                <p>{pitch.description && pitch.description}</p>
                             </div>
                             <div className='speakers'>
-                            {
+                            {   pitch.speaker && 
                                 pitch.speaker.map(eachSpeaker => (
                                     <div key={eachSpeaker.id} className='speaker'>
-                                        <p className='speaker-name'>by {eachSpeaker.fullName}</p>
-                                        <p>{eachSpeaker.organization}</p>
+                                        <p className='speaker-name'>by {eachSpeaker.fullName && eachSpeaker.fullName}</p>
+                                        <p>{eachSpeaker.organization && eachSpeaker.organization}</p>
                                     </div>
                                 ))
                             }

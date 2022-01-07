@@ -40,7 +40,7 @@ const Program = () => {
                 <span className="date">27 January 2022</span>
                 <p>We publish the first day's program here shortly before Innovate4WASH.</p>
                 <div className="hr" aria-hidden="true"></div>
-                <div className="program-items">
+                <ol className="program-items">
                   {
                     sessionsOnDay1.map(({node}) => (
                       <SessionCard key={node.id} sessionDetails={node}/>
@@ -49,14 +49,14 @@ const Program = () => {
                 <div className="overlay">
                   Coming soon
                 </div>
-                </div>
+                </ol>
             </div>
             <div className=" day day-2">
                 <h2>Day 2</h2>
                 <span className="date">28 January 2022</span>
                 <p>We publish the second day's program here shortly before Innovate4WASH.</p>
                 <div className="hr" aria-hidden="true"></div>
-                <div className="program-items">
+                <ol className="program-items">
                   {
                     sessionsOnDay2.map(({node}) => (
                       <SessionCard key={node.id} sessionDetails={node}/>
@@ -65,7 +65,7 @@ const Program = () => {
                 <div className="overlay">
                   Coming soon
                 </div>
-                </div>
+                </ol>
             
             </div>
             

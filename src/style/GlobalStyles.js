@@ -49,6 +49,11 @@ const GlobalStyle = createGlobalStyle`
         color: #fff;
         text-decoration: none;
     }
+    button {
+        font-size: 1rem;
+        font-weight: 400;
+        font-family: inherit;
+    }
 `
 
 

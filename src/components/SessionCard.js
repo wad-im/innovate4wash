@@ -1,9 +1,15 @@
-import React from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const SessionCard = ({sessionDetails}) => {
 
     const {title, description, pitchespresentations} = sessionDetails
+    const [isOpen, setIsOpen] = useState(false)
+
+    const expandInfo = () => {
+        setIsOpen(!isOpen)
+    } 
 
     return ( 
         <SessionCardContainer>
@@ -13,15 +19,21 @@ const SessionCard = ({sessionDetails}) => {
 
                 <h3 className='session-title'>{title}</h3>
                 <p className='session-desc'>{description}</p>
-
-                {
+                <button className="expand-session" onClick={expandInfo}>{isOpen ? 'Show less' : 'Show more'}</button>
+                <AnimatePresence>
+                {   isOpen && 
                     pitchespresentations.map(pitch => (
-                        <div key={pitch.id} className='pitch'>
+                        <motion.div
+                            key={pitch.id} 
+                            className='pitch' 
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}>
                             <div className="pitch-main">
                                 <h5>{pitch.title}</h5>
                                 <p>{pitch.description}</p>
                             </div>
-
+                            <div className='speakers'>
                             {
                                 pitch.speaker.map(eachSpeaker => (
                                     <div key={eachSpeaker.id} className='speaker'>
@@ -30,11 +42,11 @@ const SessionCard = ({sessionDetails}) => {
                                     </div>
                                 ))
                             }
-
-                        </div>
+                            </div>
+                        </motion.div>
                     ))
                 }
-
+                </AnimatePresence>
             </div>
             <div className="hr" aria-hidden="true"></div>
         </SessionCardContainer>
@@ -43,17 +55,28 @@ const SessionCard = ({sessionDetails}) => {
  
 export default SessionCard;
 
-const SessionCardContainer = styled.article`
+const SessionCardContainer = styled.li`
     padding: 1rem 0rem;
     display: grid;
     grid-template-columns: 20% 80%;
     .session-desc {
         width: 60%;
     }
+    .expand-session {
+        background: none;
+        border: none;
+        color: #4DEBEB;
+        text-decoration: underline;
+        cursor: pointer;
+    }
     .pitch {
         display: grid;
         grid-template-columns: 60% 40%;
         grid-column-gap: 2rem;
+        margin: 1rem 0;
+    }
+    .speakers {
+        grid-column: 2 / span 1;
     }
     .speaker p {
         margin-bottom: 0;

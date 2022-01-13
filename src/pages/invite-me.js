@@ -63,7 +63,7 @@ const InviteMePage = () => {
                 </div>
                 <div className="right-column">
                     <InvitationForm/>
-                    <ParticipatingOrganization/>
+                    {/* <ParticipatingOrganization/> */}
                 </div>
             </InviteMeContainer>
         </Layout>

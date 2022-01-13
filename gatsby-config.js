@@ -96,8 +96,20 @@ module.exports = {
         tables: [
           {
             baseId: process.env.AIRTABLE_TABLE_ID,
+            tableName: `Sessions`,
+            queryName: `Sessions`,
+            tableLinks: [`Presentations`, `Speaker_(from_Presentations)`],
+          },
+          {
+            baseId: process.env.AIRTABLE_TABLE_ID,
             tableName: `Registrations`,
-          }
+            tableLinks: [`Presentation`, `Sessions_(from_Presentation)`],
+          },
+          {
+            baseId: process.env.AIRTABLE_TABLE_ID,
+            tableName: `Presentations`,
+            tableLinks: [`Speaker`],
+          },
         ]
       }
     }

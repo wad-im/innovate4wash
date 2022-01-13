@@ -4,41 +4,42 @@ import styled from 'styled-components';
 
 const SessionCard = ({sessionDetails}) => {
 
-    const {title, description, pitchespresentations} = sessionDetails
+    const {Name, Start, End, Presentations} = sessionDetails
     const [isOpen, setIsOpen] = useState(false)
 
     const expandInfo = () => {
         setIsOpen(!isOpen)
-    } 
-
+    }
+    const presentations = Presentations !== null && Presentations.map(presentation => presentation.data)
+    
     return ( 
         <SessionCardContainer>
 
-            <p>09.00 - 09.25</p>
+            <p>{Start.substr(3)} - {End.substr(3)} </p>
             <div className='session-main'>
 
-                <h3 className='session-title'>{title}</h3>
-                <p className='session-desc'>{description}</p>
+                <h3 className='session-title'>{Name}</h3>
+                {/* <p className='session-desc'>{description}</p> */}
                 <button className="expand-session" onClick={expandInfo}>{isOpen ? 'Show less' : 'Show more'}</button>
                 <AnimatePresence>
-                {   isOpen && pitchespresentations &&
-                    pitchespresentations.map(pitch => (
+                {   isOpen && presentations &&
+                    presentations.map(pitch => (
                         <motion.div
-                            key={pitch.id} 
+                            key={pitch.Record_Id} 
                             className='pitch' 
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}>
                             <div className="pitch-main">
-                                <h5>{pitch.title && pitch.title }</h5>
-                                <p>{pitch.description && pitch.description}</p>
+                                <h5>{pitch.Title ? pitch.Title : "To be announced"}</h5>
+                                {/* <p>{pitch.description && pitch.description}</p> */}
                             </div>
                             <div className='speakers'>
-                            {   pitch.speaker && 
-                                pitch.speaker.map(eachSpeaker => (
-                                    <div key={eachSpeaker.id} className='speaker'>
-                                        <p className='speaker-name'>by {eachSpeaker.fullName && eachSpeaker.fullName}</p>
-                                        <p>{eachSpeaker.organization && eachSpeaker.organization}</p>
+                            {   pitch.Speaker && 
+                                pitch.Speaker.map(eachSpeaker => (
+                                    <div key={eachSpeaker.data.Record_Id} className='speaker'>
+                                        <p className='speaker-name'>by {eachSpeaker.data.Name && eachSpeaker.data.Name}</p>
+                                        <p>{eachSpeaker.data.Organization && eachSpeaker.data.Organization}</p>
                                     </div>
                                 ))
                             }

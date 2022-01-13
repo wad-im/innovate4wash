@@ -6,32 +6,44 @@ import SessionCard from './SessionCard';
 const Program = () => {
 
     const data = useStaticQuery(graphql`
-    query sessions {
-        allContentfulSession {
-          edges {
-            node {
-              id
-              title
-              day
-              description
-              pitchespresentations {
-                id
-                title
-                description
-                speaker {
-                  id
-                  fullName
-                  organization
+      query {
+        allAirtable 
+          (filter: {
+            table: {eq: "Sessions"}}
+          sort: {fields: data___Start order: ASC}
+          )
+        {edges
+          {node 
+            {data {
+              Record_Id
+              Name
+              Type
+              Start (formatString: "DD hh mm A")
+              End (formatString: "DD hh mm A")
+              Presentations {
+                data {
+                  Title
+                  Record_Id
+                  Speaker {
+                    data {
+                      Name
+                      Organization
+                      Record_Id
+                    }
+                  }
                 }
+              }
               }
             }
           }
         }
       }
     `)
-
-    const sessionsOnDay1 = data.allContentfulSession.edges.filter(session => session.node.day === "1")
-    const sessionsOnDay2 = data.allContentfulSession.edges.filter(session => session.node.day === "2")
+    
+    const sessions = data.allAirtable.edges.map(session => session.node.data)
+    const firstDaySessions = sessions.filter(session => session.Start.includes('27'))
+    const secondDaySessions = sessions.filter(session => session.Start.includes('28'))
+    console.log(sessions)
 
     return ( 
         <ProgramContainer>
@@ -42,13 +54,10 @@ const Program = () => {
                 <div className="hr" aria-hidden="true"></div>
                 <ol className="program-items">
                   {
-                    sessionsOnDay1.map(({node}) => (
-                      <SessionCard key={node.id} sessionDetails={node}/>
+                    firstDaySessions.map(session => (
+                      <SessionCard key={session.Record_Id} sessionDetails={session}/>
                     ))
                   }
-                <div className="overlay">
-                  Coming soon
-                </div>
                 </ol>
             </div>
             <div className=" day day-2">
@@ -58,13 +67,10 @@ const Program = () => {
                 <div className="hr" aria-hidden="true"></div>
                 <ol className="program-items">
                   {
-                    sessionsOnDay2.map(({node}) => (
-                      <SessionCard key={node.id} sessionDetails={node}/>
+                    secondDaySessions.map(session => (
+                      <SessionCard key={session.Record_Id} sessionDetails={session}/>
                     ))
                   }
-                <div className="overlay">
-                  Coming soon
-                </div>
                 </ol>
             
             </div>

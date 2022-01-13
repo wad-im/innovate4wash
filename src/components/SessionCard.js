@@ -21,7 +21,10 @@ const SessionCard = ({sessionDetails}) => {
                 <h3 className='session-title'>{Name}</h3>
                 <span className="session-type">{Type}</span>
                 {/* <p className='session-desc'>{description}</p> */}
-                <button className="expand-session" onClick={expandInfo}>{isOpen ? 'Show less' : 'Show more'}</button>
+                {
+                    presentations && <button className="expand-session" onClick={expandInfo}>{isOpen ? 'Show less' : 'Show more'}</button>
+                
+                }
                 <AnimatePresence>
                 {   isOpen && presentations &&
                     presentations.map(pitch => (

@@ -46,7 +46,7 @@ const Program = () => {
     console.log(sessions)
 
     return ( 
-        <ProgramContainer>
+        <ProgramContainer id='program'>
             <div className=" day day-1">
                 <h2>Day 1</h2>
                 <span className="date">27 January 2022</span>

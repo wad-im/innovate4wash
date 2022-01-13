@@ -136,13 +136,22 @@ const SessionCardContainer = styled.li`
         .session-desc {
             width: 100%;
         }
-        .pitch {
+        .session-main {
+            grid-column-gap: 0;
             grid-template-columns: 100%;
+        }
+        .expand-session {
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .pitch {
+            grid-column: 1 / span 1;
+            display: flex;
+            flex-direction: column;
             .speaker {
                 margin-bottom: 1rem;
-                text-align: right;
-                align-self: flex-end;
             }
         }
+        
     }
 `

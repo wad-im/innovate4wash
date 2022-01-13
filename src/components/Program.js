@@ -18,8 +18,8 @@ const Program = () => {
               Record_Id
               Name
               Type
-              Start (formatString: "DD hh mm A")
-              End (formatString: "DD hh mm A")
+              Start (formatString: "DD hh:mm A")
+              End (formatString: "DD hh:mm A")
               Presentations {
                 data {
                   Title
@@ -43,7 +43,6 @@ const Program = () => {
     const sessions = data.allAirtable.edges.map(session => session.node.data)
     const firstDaySessions = sessions.filter(session => session.Start.includes('27'))
     const secondDaySessions = sessions.filter(session => session.Start.includes('28'))
-    console.log(sessions)
 
     return ( 
         <ProgramContainer id='program'>

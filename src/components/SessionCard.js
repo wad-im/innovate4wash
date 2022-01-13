@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const SessionCard = ({sessionDetails}) => {
 
-    const {Name, Start, End, Presentations} = sessionDetails
+    const {Name, Start, End, Presentations, Type} = sessionDetails
     const [isOpen, setIsOpen] = useState(false)
 
     const expandInfo = () => {
@@ -19,6 +19,7 @@ const SessionCard = ({sessionDetails}) => {
             <div className='session-main'>
 
                 <h3 className='session-title'>{Name}</h3>
+                <span className="session-type">{Type}</span>
                 {/* <p className='session-desc'>{description}</p> */}
                 <button className="expand-session" onClick={expandInfo}>{isOpen ? 'Show less' : 'Show more'}</button>
                 <AnimatePresence>
@@ -60,17 +61,41 @@ const SessionCardContainer = styled.li`
     padding: 1rem 0rem;
     display: grid;
     grid-template-columns: 20% 80%;
+    .session-main {
+        display: grid;
+        grid-template-columns: 80% 20%;
+        grid-column-gap: 2rem;
+    }
     .session-desc {
         width: 60%;
     }
     .expand-session {
+        justify-self: start;
         background: none;
         border: none;
         color: #4DEBEB;
         text-decoration: underline;
         cursor: pointer;
     }
+    .session-type {
+        display: inline-flex;
+        vertical-align: top;
+        -webkit-box-align: center;
+        align-items: center;
+        max-width: 100%;
+        font-weight: 400;
+        font-size: 0.8rem;
+        line-height: 1.2;
+        outline: #4DEBEB solid 1px;
+        outline-offset: 2px;
+        height: fit-content;
+        width: fit-content;
+        border-radius: 0.375rem;
+        padding: 0.5rem;
+        background: none;
+    }
     .pitch {
+        grid-column: 1 / span 2;
         display: grid;
         grid-template-columns: 60% 40%;
         grid-column-gap: 2rem;
@@ -93,6 +118,13 @@ const SessionCardContainer = styled.li`
     }
     @media screen and (max-width: 994px){
       grid-template-columns: 100%;
+      .session-type {
+          grid-row: 1 / span 2;
+          margin-bottom: 1rem;
+      }
+      .session-title {
+          grid-column: span 2;
+      }
       .hr {
           grid-column: 1 / span 1;
       }

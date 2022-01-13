@@ -75,7 +75,7 @@ const Program = () => {
             <div className=" day day-1">
                 <h2>Day 1</h2>
                 <span className="date">29 January 2022</span>
-                <p>Kiwasco will offer technical tours on the third day. More information will follow.</p>
+                <p>Kiwasco will offer technical tours on the third day. More information will follow. Let us know if you'd like to participate.</p>
                 {/* <div className="hr" aria-hidden="true"></div>
                 <ol className="program-items">
                   {

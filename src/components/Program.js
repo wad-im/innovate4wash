@@ -50,7 +50,6 @@ const Program = () => {
             <div className=" day day-1">
                 <h2>Day 1</h2>
                 <span className="date">27 January 2022</span>
-                <p>We publish the first day's program here shortly before Innovate4WASH.</p>
                 <div className="hr" aria-hidden="true"></div>
                 <ol className="program-items">
                   {
@@ -63,7 +62,6 @@ const Program = () => {
             <div className=" day day-2">
                 <h2>Day 2</h2>
                 <span className="date">28 January 2022</span>
-                <p>We publish the second day's program here shortly before Innovate4WASH.</p>
                 <div className="hr" aria-hidden="true"></div>
                 <ol className="program-items">
                   {
@@ -73,6 +71,19 @@ const Program = () => {
                   }
                 </ol>
             
+            </div>
+            <div className=" day day-1">
+                <h2>Day 1</h2>
+                <span className="date">29 January 2022</span>
+                <p>Kiwasco will offer technical tours on the third day. More information will follow.</p>
+                {/* <div className="hr" aria-hidden="true"></div>
+                <ol className="program-items">
+                  {
+                    firstDaySessions.map(session => (
+                      <SessionCard key={session.Record_Id} sessionDetails={session}/>
+                    ))
+                  }
+                </ol> */}
             </div>
             
         </ProgramContainer>

@@ -15,7 +15,7 @@ const SessionCard = ({sessionDetails}) => {
     return ( 
         <SessionCardContainer>
 
-            <p>{Start.substr(3)} - {End.substr(3)} </p>
+            <p>{Start.substr(3)} - {End.substr(3)}</p>
             <div className='session-main'>
 
                 <h3 className='session-title'>{Name}</h3>

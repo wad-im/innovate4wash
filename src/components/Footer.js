@@ -12,6 +12,7 @@ const Footer = () => {
             <div className="legal">
                 <Link to='/terms-and-conditions' className="link">Terms of use</Link>
                 <Link to='/privacy-policy' className="link">Privacy Policy</Link>
+                <Link to='/logistics' className="link">Logistics Info</Link>
             </div>
         </FooterContainer>
      );
@@ -27,6 +28,9 @@ const FooterContainer = styled.footer`
     flex-direction: column;
     text-align: center;
     color: #dedede;
+    .legal {
+        margin: 2rem 0;
+    }
     a {
         text-decoration: underline;
         color: #dedede;

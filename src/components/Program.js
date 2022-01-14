@@ -18,7 +18,7 @@ const Program = () => {
               Record_Id
               Name
               Type
-              Start (formatString: "DD hh:mm A")
+              Start (formatString: "DD hh:mm")
               End (formatString: "DD hh:mm A")
               Presentations {
                 data {

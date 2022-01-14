@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import {useStaticQuery, graphql} from 'gatsby'
 import SessionCard from './SessionCard';
+import ParticipatingOrganization from './ParticipatingOrganizations';
 
 const Program = () => {
 
@@ -47,7 +48,7 @@ const Program = () => {
 
     return ( 
         <ProgramContainer id='program'>
-            <div className=" day day-1">
+            <div className="day day-1">
                 <h2>Day 1</h2>
                 <span className="date">27 January 2022</span>
                 <div className="hr" aria-hidden="true"></div>
@@ -59,6 +60,7 @@ const Program = () => {
                   }
                 </ol>
             </div>
+            <ParticipatingOrganization/>
             <div className=" day day-2">
                 <h2>Day 2</h2>
                 <span className="date">28 January 2022</span>

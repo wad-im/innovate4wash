@@ -7,10 +7,18 @@ const ParticipatingOrganization = () => {
 
     const data = useStaticQuery(graphql`
     query {
-        allAirtable {edges {node {data {Organization}}}}
-       }
+        allAirtable(filter: { table: { eq: "Registrations" } }) {
+          edges {
+            node {
+              data {
+                Organization
+              }
+            }
+          }
+        }
+      }
     `)
-
+    console.log(data)
     let participatingOrganizations = []
     data.allAirtable.edges.forEach((element)=>{
         const {Organization} = element.node.data
@@ -21,7 +29,7 @@ const ParticipatingOrganization = () => {
 
     return ( 
         <Container>
-            <h2>These organization already signed up</h2>
+            <h2>These organizations are here</h2>
             <div className="tags">
                 {
                     participatingOrganizations.map(organization => (
@@ -42,6 +50,7 @@ const Container = styled.div`
         display: flex;
         justify-content: flex-start;
         flex-wrap: wrap;
+        margin-top: 1rem;
     }
     .tag {
         display: inline-flex;
@@ -50,7 +59,7 @@ const Container = styled.div`
         align-items: center;
         max-width: 100%;
         font-weight: 400;
-        font-size: 1rem;
+        font-size: 0.8rem;
         line-height: 1.2;
         outline: transparent solid 2px;
         outline-offset: 2px;
@@ -60,8 +69,8 @@ const Container = styled.div`
         min-height: 2rem;
         min-width: 2rem;
         border-radius: 0.375rem;
-        padding-inline-start: 0.75rem;
-        padding-inline-end: 0.75rem;
+        padding-inline-start: 0.5rem;
+        padding-inline-end: 0.5rem;
         margin: 0.25rem 0.25rem 0.25rem 0.25rem;
         background: rgb(13,82,79);
         background: linear-gradient(45deg, rgba(13,82,79,1) 0%, rgba(19,122,117,1) 75%);

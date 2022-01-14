@@ -23,6 +23,7 @@ const Program = () => {
               Presentations {
                 data {
                   Title
+                  Description
                   Record_Id
                   Speaker {
                     data {

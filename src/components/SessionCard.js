@@ -36,7 +36,7 @@ const SessionCard = ({sessionDetails}) => {
                             exit={{ opacity: 0 }}>
                             <div className="pitch-main">
                                 <h5>{pitch.Title ? pitch.Title : "To be announced"}</h5>
-                                {/* <p>{pitch.description && pitch.description}</p> */}
+                                <p>{pitch.Description && pitch.Description}</p>
                             </div>
                             <div className='speakers'>
                             {   pitch.Speaker && 

@@ -23,10 +23,13 @@ const ParticipatingOrganization = () => {
     let participatingOrganizations = []
     data.allAirtable.edges.forEach((element)=>{
         const {Organization, Website, Record_Id} = element.node.data
-        if (!participatingOrganizations.includes(Organization)){
-            participatingOrganizations.push({Organization, Website, Record_Id})
-        }
+        
+        
+        // if (!participatingOrganizations.includes(Organization)){
+        //     participatingOrganizations.push({Organization, Website, Record_Id})
+        // }
     })
+    
 
     return ( 
         <Container>

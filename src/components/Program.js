@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import {useStaticQuery, graphql} from 'gatsby'
 import ConferenceDay from './ConferenceDay';
+import ParticipatingOrganization from './ParticipatingOrganizations';
 
 const Program = () => {
 
@@ -49,6 +50,7 @@ const Program = () => {
     return ( 
         <ProgramContainer id='program'>
             <ConferenceDay conferenceDay='Day 1' sessions={firstDaySessions}/>
+            <ParticipatingOrganization/>
             <ConferenceDay conferenceDay='Day 2' sessions={secondDaySessions}/>
             <ConferenceDay conferenceDay='Day 3' />
         </ProgramContainer>

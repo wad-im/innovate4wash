@@ -12,18 +12,19 @@ const ParticipatingOrganization = () => {
             node {
               data {
                 Organization
+                Website
+                Record_Id
               }
             }
           }
         }
       }
     `)
-    console.log(data)
     let participatingOrganizations = []
     data.allAirtable.edges.forEach((element)=>{
-        const {Organization} = element.node.data
+        const {Organization, Website, Record_Id} = element.node.data
         if (!participatingOrganizations.includes(Organization)){
-            participatingOrganizations.push(Organization)
+            participatingOrganizations.push({Organization, Website, Record_Id})
         }
     })
 
@@ -33,7 +34,9 @@ const ParticipatingOrganization = () => {
             <div className="tags">
                 {
                     participatingOrganizations.map(organization => (
-                        <span key={organization} className='tag'>{organization}</span>
+                        <span key={organization.Record_Id} className='tag'>
+                            { organization.Website ? <a href={organization.Website}>{organization.Organization}</a> : organization.Organization}
+                        </span>
                     ))
                 }
             </div>
@@ -77,5 +80,6 @@ const Container = styled.div`
     }
     @media screen and (max-width: 588px){
         padding: 0 1rem;
+        display: none;
     }
 `

@@ -43,7 +43,7 @@ const SessionCard = ({sessionDetails}) => {
                                 pitch.Speaker.map(eachSpeaker => (
                                     <div key={eachSpeaker.data.Record_Id} className='speaker'>
                                         <p className='speaker-name'>by {eachSpeaker.data.Name && eachSpeaker.data.Name}</p>
-                                        <p>{eachSpeaker.data.Organization && eachSpeaker.data.Organization}</p>
+                                        <p>{ eachSpeaker.data.Website ? <a href={eachSpeaker.data.Website}>{eachSpeaker.data.Organization}</a> : eachSpeaker.data.Organization}</p>
                                     </div>
                                 ))
                             }
@@ -109,6 +109,10 @@ const SessionCardContainer = styled.li`
     }
     .speaker p {
         margin-bottom: 0;
+    }
+    .speaker a {
+        color: #4DEBEB;
+        text-decoration: underline;
     }
     .speaker-name {
         font-weight: 700;

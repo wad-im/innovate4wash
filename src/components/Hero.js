@@ -59,7 +59,7 @@ const HeroContainer = styled.section`
     .button-group {
         display: flex;
         flex-direction: column;
-        align-items: center;
+        align-items: start;
         width: fit-content;
         .sponsor-button {
             /* margin-left: 1rem; */

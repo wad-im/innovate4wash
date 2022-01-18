@@ -18,8 +18,8 @@ const HeroSection = () => {
                 Innovate4WASH is a two-day marketplace platform designed to connect <strong>ideas, talent and capital</strong>, from and outside of Kenya, to scale-up existing commercial solutions to problems and opportunities in the water and sanitation sector.
                 </p>
                 <div className="button-group">
-                    <Button to='/invite-me' className='reg-button'>
-                        Invite me! I'd love to participate
+                    <Button to='/registration' className='reg-button'>
+                        Register now
                     </Button>
                     <Link to='/about#sponsorship' className='sponsor-button'>I am interested to become a sponsor</Link>
                 </div>

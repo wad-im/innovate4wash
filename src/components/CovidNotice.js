@@ -34,4 +34,8 @@ const CovidNoticeContainer = styled.section`
         flex-direction: column;
         align-items: flex-start;
     }
+    @media screen and (max-width: 588px){
+        margin: 2rem 0;
+        padding: 1rem;
+    }
 `

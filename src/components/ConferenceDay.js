@@ -60,4 +60,7 @@ const ConferenceDayContainer = styled.div`
         height: 0.05rem;
         margin-top: 2rem;
     }
+    @media screen and (max-width: 588px){
+        padding: 2rem 1.5rem;
+    }
 `

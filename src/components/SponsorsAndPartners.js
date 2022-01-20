@@ -80,4 +80,9 @@ const Tag = styled.span`
     .icon {
       margin-right: 0.5rem;
     }
+    @media screen and (max-width: 588px){
+      height: fit-content;
+      padding-top: 0.2rem;
+      padding-bottom: 0.2rem;
+    }
 `

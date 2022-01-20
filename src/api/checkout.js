@@ -24,7 +24,7 @@ export default async function handler(req, res) {
                       "Organization": values.organization,
                       "Email": values.email,
                       "Complete Registration": true,
-                      "Registration Type": "Online Registration"
+                      "Registration Type": "Online"
                     },
                   },
                 ],

@@ -26,7 +26,7 @@ const ParticipatingOrganization = () => {
     data.allAirtable.edges.forEach((element)=>{
         const {Organization, Website, Record_Id, Complete_Registration} = element.node.data
         
-        let isIncludedInList = participatingOrganizations.some( organization => Complete_Registration && organization['Organization'] === Organization )
+        let isIncludedInList = participatingOrganizations.some( organization => organization['Complete_Registration'] && organization['Organization'] === Organization )
         if (!isIncludedInList) {
             participatingOrganizations.push({Organization, Website, Record_Id})
         }

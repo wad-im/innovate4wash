@@ -50,7 +50,6 @@ const Program = () => {
 
     return ( 
         <ProgramContainer id='program'>
-            <CovidNotice/>
             <ConferenceDay conferenceDay='Day 1' sessions={firstDaySessions}/>
             <ParticipatingOrganization/>
             <ConferenceDay conferenceDay='Day 2' sessions={secondDaySessions}/>

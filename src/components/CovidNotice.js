@@ -16,7 +16,7 @@ const CovidNotice = () => {
  
 export default CovidNotice;
 
-const CovidNoticeContainer = styled.div`
+const CovidNoticeContainer = styled.section`
     display: flex;  
     align-items: center;
     justify-content: space-between;

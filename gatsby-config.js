@@ -110,6 +110,10 @@ module.exports = {
             tableName: `Presentations`,
             tableLinks: [`Speaker`],
           },
+          {
+            baseId: process.env.AIRTABLE_TABLE_ID,
+            tableName: `Sponsors/Partners`,
+          }
         ]
       }
     }

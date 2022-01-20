@@ -6,7 +6,10 @@ const CovidNotice = () => {
     return ( 
         <CovidNoticeContainer>
             <h2>Covid-19</h2>
-            <p>Let us stay safe together. Check our actions to contribute to it in the <Link to='/logistics'>Innovate4WASH logistics info.</Link></p>
+            <div>
+                <p>Let us stay safe together. Check our actions to contribute to it during the event in the <Link to='/logistics'>Innovate4WASH logistics info.</Link></p>
+                <p>Want to attend virtually? Let us know! It is possible!</p>
+            </div>
         </CovidNoticeContainer>
      );
 }

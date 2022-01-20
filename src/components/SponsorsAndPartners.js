@@ -49,11 +49,15 @@ const SponsorsAndPartners = () => {
 export default SponsorsAndPartners;
 
 const SponsorsDisplay = styled.section`
+  padding: 0rem 2rem;
     .display-container {
         display: flex;
         justify-content: flex-start;
         flex-wrap: wrap;
         margin-top: 1rem;
+    }
+    @media screen and (max-width: 588px){
+      padding: 0rem 1rem;
     }
 `
 

@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import {useStaticQuery, graphql} from 'gatsby'
 import ConferenceDay from './ConferenceDay';
 import ParticipatingOrganization from './ParticipatingOrganizations';
-import CovidNotice from './CovidNotice';
 
 const Program = () => {
 

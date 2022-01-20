@@ -1,6 +1,7 @@
 import { graphql, useStaticQuery } from 'gatsby';
 import React from 'react';
 import styled from 'styled-components';
+import { IconDiamond, IconAward } from '@tabler/icons';
 
 const SponsorsAndPartners = () => {
 
@@ -33,7 +34,8 @@ const SponsorsAndPartners = () => {
                     organizations.map(organization => {
                         return (
                             <Tag className="tag" key={organization.node.data['Record_Id']} partnertype={organization.node.data.Partner_Type}>
-                               <a href={organization.node.data['Website']}>{organization.node.data['Name']}</a> 
+                              {organization.node.data.Partner_Type === 'Premium Sponsor' ? <IconDiamond className='icon'/> : organization.node.data.Partner_Type === 'Bronze Sponsor' ? <IconAward className='icon'/> : null}
+                               <a href={organization.node.data['Website']}>{organization.node.data['Name']}</a>
                             </Tag>
                         )
                         })
@@ -75,4 +77,7 @@ const Tag = styled.span`
     margin: 0.25rem 0.25rem 0.25rem 0.25rem;
     color: #fff;
     background-color: ${props => props.partnertype === 'Premium Sponsor'  ? '#9E8C2C' : props.partnertype === 'Bronze Sponsor' ? '#9E4715': 'rgb(13,82,79)'};
+    .icon {
+      margin-right: 0.5rem;
+    }
 `

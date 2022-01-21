@@ -23,7 +23,7 @@ const CovidNoticeContainer = styled.section`
     overflow: hidden;
     border-radius: 1rem;
     padding: 1rem 2rem;
-    margin-bottom: 2rem;
+    margin: 2rem 0;
     border: #06EFEF solid 0.1rem;
     color: #06EFEF;
     a {
@@ -35,7 +35,6 @@ const CovidNoticeContainer = styled.section`
         align-items: flex-start;
     }
     @media screen and (max-width: 588px){
-        margin: 2rem 0;
         padding: 1rem;
     }
 `

@@ -19,7 +19,7 @@ const ConferenceDay = ({sessions, conferenceDay}) => {
                     <ol className="program-items">
                         {
                         sessions.map(session => (
-                            <SessionCard key={session.Record_Id} sessionDetails={session}/>
+                            <SessionCard key={session.Record_Id} sessionDetails={session} />
                         ))
                         }
                   </ol> : 

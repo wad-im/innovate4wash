@@ -13,8 +13,7 @@ const SessionCard = ({sessionDetails}) => {
     const presentations = Presentations !== null && Presentations.map(presentation => presentation.data)
     
     return ( 
-        <SessionCardContainer sessiontype={Type}>
-
+        <SessionCardContainer sessionType={Type[0]} className='session-card'>
             <p>{Start.substr(3)} - {End.substr(3)}</p>
             <div className='session-main'>
 
@@ -64,7 +63,8 @@ const SessionCardContainer = styled.li`
     padding: 1rem 0rem;
     display: grid;
     grid-template-columns: 20% 80%;
-    color: ${props => props.sessiontype === 'Sponsor Session' && '#9E8C2C'};
+    /* color: #9E8C2C; */
+    color: ${({sessionType}) => sessionType === 'Sponsor Session' && '#EBCD36'};
     .session-main {
         display: grid;
         grid-template-columns: 80% 20%;
@@ -77,7 +77,7 @@ const SessionCardContainer = styled.li`
         justify-self: start;
         background: none;
         border: none;
-        color: ${props => props.sessiontype === 'Sponsor Session' ? '#9E8C2C' : '#4DEBEB'};
+        color: ${({sessionType}) => sessionType === 'Sponsor Session' ? '#EBCD36' : '#4DEBEB'};
         text-decoration: underline;
         cursor: pointer;
     }
@@ -90,7 +90,7 @@ const SessionCardContainer = styled.li`
         font-weight: 400;
         font-size: 0.8rem;
         line-height: 1.2;
-        outline: ${props => props.sessiontype === 'Sponsor Session' ? '#9E8C2C' : '#4DEBEB'} solid 1px;
+        outline: ${({sessionType}) => sessionType === 'Sponsor Session' ? '#EBCD36' : '#4DEBEB'} solid 1px;
         outline-offset: 2px;
         height: fit-content;
         width: fit-content;
@@ -112,7 +112,7 @@ const SessionCardContainer = styled.li`
         margin-bottom: 0;
     }
     .speaker a {
-        color: ${props => props.sessiontype === 'Sponsor Session' ? '#9E8C2C' : '#4DEBEB'};
+        color: ${({sessionType}) => sessionType=== 'Sponsor Session' ? '#EBCD36' : '#4DEBEB'};
         text-decoration: underline;
     }
     .speaker-name {

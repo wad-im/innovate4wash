@@ -55,6 +55,7 @@ const createStripeSession = async (req, res) => {
         ],
         mode: "payment",
         customer_email: email,
+        allow_promotion_codes: true,
         metadata: {
           dbRecordId: recordId,
         },

@@ -22,8 +22,7 @@ const ConferenceDay = ({sessions, conferenceDay}) => {
                             <SessionCard key={session.Record_Id} sessionDetails={session} />
                         ))
                         }
-                  </ol> : 
-                  <p>Kiwasco will offer technical tours on the third day. More information will follow. Let us know if you'd like to participate.</p>
+                  </ol> : null
                 }
             </ConferenceDayContainer>
      );

@@ -46,13 +46,14 @@ const Program = () => {
     const sessions = data.allAirtable.edges.map(session => session.node.data)
     const firstDaySessions = sessions.filter(session => session.Start.includes('27'))
     const secondDaySessions = sessions.filter(session => session.Start.includes('28'))
+    const thirdDaySessions = sessions.filter(session => session.Start.includes('29'))
 
     return ( 
         <ProgramContainer id='program'>
             <ConferenceDay conferenceDay='Day 1' sessions={firstDaySessions}/>
             <ParticipatingOrganization/>
             <ConferenceDay conferenceDay='Day 2' sessions={secondDaySessions}/>
-            <ConferenceDay conferenceDay='Day 3' />
+            <ConferenceDay conferenceDay='Day 3' sessions={thirdDaySessions} />
         </ProgramContainer>
      );
 }

@@ -15,7 +15,7 @@ const ConferenceDay = ({sessions, conferenceDay}) => {
                 <div className="hr" aria-hidden="true"></div>
                 
                 {
-                    conferenceDay === 'Day 1' || conferenceDay === 'Day 2' ? 
+                    conferenceDay === 'Day 1' || conferenceDay === 'Day 2' || conferenceDay === 'Day 3' ? 
                     <ol className="program-items">
                         {
                         sessions.map(session => (

@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import {useStaticQuery, graphql} from 'gatsby'
+import { useStaticQuery, graphql } from 'gatsby'
 import ConferenceDay from './ConferenceDay';
 import ParticipatingOrganization from './ParticipatingOrganizations';
 
 const Program = () => {
 
-    const data = useStaticQuery(graphql`
+  const data = useStaticQuery(graphql`
       query {
         allAirtable 
           (filter: {
@@ -26,6 +26,9 @@ const Program = () => {
                   Title
                   Description
                   Record_Id
+                  Attachments {
+                    url
+                  }
                   Speaker {
                     data {
                       Name
@@ -42,22 +45,22 @@ const Program = () => {
         }
       }
     `)
-    
-    const sessions = data.allAirtable.edges.map(session => session.node.data)
-    const firstDaySessions = sessions.filter(session => session.Start.includes('27'))
-    const secondDaySessions = sessions.filter(session => session.Start.includes('28'))
-    const thirdDaySessions = sessions.filter(session => session.Start.includes('29'))
 
-    return ( 
-        <ProgramContainer id='program'>
-            <ConferenceDay conferenceDay='Day 1' sessions={firstDaySessions}/>
-            <ParticipatingOrganization/>
-            <ConferenceDay conferenceDay='Day 2' sessions={secondDaySessions}/>
-            <ConferenceDay conferenceDay='Day 3' sessions={thirdDaySessions} />
-        </ProgramContainer>
-     );
+  const sessions = data.allAirtable.edges.map(session => session.node.data)
+  const firstDaySessions = sessions.filter(session => session.Start.includes('27'))
+  const secondDaySessions = sessions.filter(session => session.Start.includes('28'))
+  const thirdDaySessions = sessions.filter(session => session.Start.includes('29'))
+
+  return (
+    <ProgramContainer id='program'>
+      <ConferenceDay conferenceDay='Day 1' sessions={firstDaySessions} />
+      <ParticipatingOrganization />
+      <ConferenceDay conferenceDay='Day 2' sessions={secondDaySessions} />
+      <ConferenceDay conferenceDay='Day 3' sessions={thirdDaySessions} />
+    </ProgramContainer>
+  );
 }
- 
+
 export default Program;
 
 const ProgramContainer = styled.section`

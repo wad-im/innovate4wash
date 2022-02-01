@@ -11,6 +11,7 @@ const SessionCard = ({sessionDetails}) => {
         setIsOpen(!isOpen)
     }
     const presentations = Presentations !== null && Presentations.map(presentation => presentation.data)
+    console.log(presentations)
     
     return ( 
         <SessionCardContainer sessionType={Type[0]} className='session-card'>
@@ -36,6 +37,7 @@ const SessionCard = ({sessionDetails}) => {
                             <div className="pitch-main">
                                 <h5>{pitch.Title ? pitch.Title : "To be announced"}</h5>
                                 <p>{pitch.Description && pitch.Description}</p>
+                                {pitch.Attachments && <a className='pitch-slides' href={pitch.Attachments[0].url} target="_blank" rel="noreferrer noopener">Get the pitch slides</a> }
                             </div>
                             <div className='speakers'>
                             {   pitch.Speaker && 
@@ -117,6 +119,11 @@ const SessionCardContainer = styled.li`
     }
     .speaker-name {
         font-weight: 700;
+    }
+    .pitch-slides {
+        color: ${({sessionType}) => sessionType=== 'Sponsor Session' ? '#EBCD36' : '#4DEBEB'};
+        font-size: 0.8rem;
+        text-decoration: underline;
     }
     .hr {
         grid-column: 1 / span 2;

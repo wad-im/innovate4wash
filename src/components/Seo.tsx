@@ -18,7 +18,14 @@ const query = graphql`
   }
 `
 
-const Seo = ({ title, description, metaImage, robotParam, author }) => {
+type SeoProps = {
+  title: string,
+  description: string,
+  metaImage: string, 
+  author: string
+}
+
+const Seo = ({ title, description, metaImage, author }: SeoProps) => {
   const { href } = useLocation()
   const { site } = useStaticQuery(query)
 
@@ -63,9 +70,9 @@ const Seo = ({ title, description, metaImage, robotParam, author }) => {
       )}
       <meta name="twitter:image" content={seo.image} />
 
-      <meta itemprop="name" content={site.title} />
-      <meta itemprop="description" content={site.description} />
-      <meta itemprop="image" content={seo.image} />
+      <meta itemProp="name" content={site.title} />
+      <meta itemProp="description" content={site.description} />
+      <meta itemProp="image" content={seo.image} />
 
       <meta name="theme-color" content={seo.color} />
       <meta name="msapplication-navbutton-color" content={seo.color} />

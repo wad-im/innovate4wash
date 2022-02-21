@@ -51,6 +51,8 @@
     "yup": "^0.32.11"
   },
   "devDependencies": {
+    "@types/react-helmet": "^6.1.5",
+    "@types/styled-components": "^5.1.23",
     "env-cmd": "^10.1.0",
     "prettier": "^2.5.1"
   }

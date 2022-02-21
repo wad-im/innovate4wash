@@ -19,8 +19,10 @@ const ParticipatingOrganization = () => {
       }
     }
   `)
-  let participatingOrganizations = []
+  let participatingOrganizations: {Organization: string, Website: string | null, Record_Id: string}[] = []
+
   data.allAirtable.edges.forEach(element => {
+    console.log(element)
     const { Organization, Website, Record_Id, Complete_Registration } =
       element.node.data
 

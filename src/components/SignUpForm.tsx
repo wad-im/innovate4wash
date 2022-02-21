@@ -8,10 +8,16 @@ import queryString from "query-string"
 import { Form } from "../style/Mixins"
 import { Link } from "gatsby"
 
+interface User {
+  fullName: string,
+  organization: string,
+  email: string,
+}
+
 const SignUp = ({ location }) => {
-  const [status, setStatus] = useState(null)
-  const [feedback, setFeedback] = useState(null)
-  const [registrationName, setRegistrationName] = useState(null)
+  const [status, setStatus] = useState<string>("initial")
+  const [feedback, setFeedback] = useState<string | null>(null)
+  const [registrationName, setRegistrationName] = useState<string>(null)
   const { sessionId } = queryString.parse(location.search)
 
   // if the user returns to the website without a valid sessionId, redirect to clean registration page
@@ -22,7 +28,7 @@ const SignUp = ({ location }) => {
   }, [sessionId])
 
   // send form data to airtable, fetch stripe checkout session and forward user to the checkout session
-  const checkout = async (values, location) => {
+  const checkout = async (values: User, location) => {
     try {
       setStatus("forwarding")
       const response = await axios.post("/api/checkout", { values, location })
@@ -90,7 +96,7 @@ const SignUp = ({ location }) => {
       organization: Yup.string().required("Required"),
       email: Yup.string().email("Invalid email address").required("Required"),
     }),
-    onSubmit: (values, { resetForm }) => {
+    onSubmit: (values: User, { resetForm }) => {
       checkout(values, location)
       setStatus("submitting")
       setTimeout(() => {

@@ -5,10 +5,11 @@ module.exports = {
   siteMetadata: {
     siteUrl: "https://innovate4wash.quercus-group.com",
     title: "Innovate4WASH Kisumu 2022",
-    description: "Innovate4WASH is a two-day marketplace platform for innovators, investors and enablers in Kenya's WASH sector.",
+    description:
+      "Innovate4WASH is a two-day marketplace platform for innovators, investors and enablers in Kenya's WASH sector.",
     defaultAuthor: "Quercus Group",
-    image: '/mainMetaImage.jpg',
-    themeColor: "#137A75"
+    image: "/mainMetaImage.jpg",
+    themeColor: "#137A75",
   },
   plugins: [
     {
@@ -45,8 +46,8 @@ module.exports = {
           `/terms-and-conditions`,
           `/privacy-policy.html`,
           `/privacy-policy`,
-        ]
-      }
+        ],
+      },
     },
     {
       resolve: `@raae/gatsby-plugin-fathom`,
@@ -63,7 +64,7 @@ module.exports = {
         background_color: `#023C3C`,
         theme_color: `#137A75`,
         display: `standalone`,
-        icon: 'src/images/icon.svg',
+        icon: "src/images/icon.svg",
         lang: `en`,
       },
     },
@@ -81,7 +82,8 @@ module.exports = {
         mode: "async",
         enableListener: true,
         preconnect: ["https://fonts.googleapis.com"],
-        web: [{
+        web: [
+          {
             name: "Lato",
             file: "https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap",
           },
@@ -113,9 +115,9 @@ module.exports = {
           {
             baseId: process.env.AIRTABLE_TABLE_ID,
             tableName: `Sponsors/Partners`,
-          }
-        ]
-      }
-    }
+          },
+        ],
+      },
+    },
   ],
-};
+}
